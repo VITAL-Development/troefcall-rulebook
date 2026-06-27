@@ -1,0 +1,65 @@
+@import './fonts.css';
+@import './tokens.css';
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-felt-700);
+  color: var(--color-text-on-felt);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  margin: 0 0 var(--space-3) 0;
+  line-height: 1.2;
+}
+
+p {
+  margin: 0 0 var(--space-3) 0;
+}
+
+a {
+  color: var(--color-gold-300);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: var(--font-body);
+}
+
+::selection {
+  background: var(--color-gold-500);
+  color: var(--color-wood-900);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

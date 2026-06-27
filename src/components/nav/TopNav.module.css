@@ -1,0 +1,56 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-3) var(--space-5);
+  background: linear-gradient(180deg, var(--color-wood-900) 0%, var(--color-wood-700) 100%);
+  border-bottom: 3px solid var(--color-gold-500);
+  box-shadow: var(--shadow-panel);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--color-gold-300);
+  white-space: nowrap;
+}
+
+.links {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.link {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-text-on-wood);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-pill);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.link:hover {
+  text-decoration: none;
+  background-color: rgba(212, 175, 55, 0.18);
+  color: var(--color-gold-200);
+}
+
+.linkActive {
+  background-color: var(--color-gold-500);
+  color: var(--color-wood-900);
+}
+
+.linkActive:hover {
+  background-color: var(--color-gold-300);
+  color: var(--color-wood-900);
+}

@@ -1,0 +1,59 @@
+:root {
+  /* Felt / table */
+  --color-felt-900: #0f3d2e;
+  --color-felt-700: #1b4332;
+  --color-felt-600: #235843;
+  --color-felt-500: #2d6a4f;
+  --color-felt-edge: #14332a;
+
+  /* Wood / gold accents */
+  --color-wood-900: #3a2316;
+  --color-wood-700: #5c3a24;
+  --color-wood-500: #7a4f32;
+  --color-gold-700: #a6781f;
+  --color-gold-500: #d4af37;
+  --color-gold-300: #e9cf73;
+  --color-gold-200: #f4e3a6;
+
+  /* Card surface */
+  --color-card-face: #fdf8ee;
+  --color-card-face-shade: #f1e9d6;
+  --color-card-back: #7a1f2b;
+  --color-card-back-pattern: #9c2c3a;
+
+  /* Suit colors */
+  --color-suit-red: #b3122b;
+  --color-suit-black: #1c1c1c;
+
+  /* Semantic */
+  --color-text-on-felt: #f5f0e1;
+  --color-text-on-felt-dim: #c9d8cd;
+  --color-text-on-wood: #f4e9d8;
+  --color-text-body: #2c2114;
+  --color-trump-highlight: var(--color-gold-500);
+  --color-danger: #c1432e;
+  --color-success: #2f7d4f;
+
+  --radius-card: 10px;
+  --radius-panel: 18px;
+  --radius-pill: 999px;
+
+  --shadow-card-resting: 0 2px 4px rgba(0, 0, 0, 0.35);
+  --shadow-card-lifted: 0 10px 20px rgba(0, 0, 0, 0.45);
+  --shadow-panel: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-gold-glow: 0 0 0 3px var(--color-gold-500), 0 0 18px 4px rgba(212, 175, 55, 0.55);
+
+  --font-display: 'Fredoka', 'Baloo 2', sans-serif;
+  --font-heading: 'Baloo 2', 'Fredoka', sans-serif;
+  --font-body: 'Nunito', sans-serif;
+  --font-mono-score: 'JetBrains Mono', monospace;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+}

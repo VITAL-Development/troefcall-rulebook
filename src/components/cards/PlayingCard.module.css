@@ -1,0 +1,123 @@
+.cardWrap {
+  display: inline-block;
+  perspective: 800px;
+}
+
+.card {
+  position: relative;
+  width: var(--card-w, 70px);
+  height: var(--card-h, 98px);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card-resting);
+  background: transparent;
+  cursor: default;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  box-shadow: var(--shadow-card-lifted);
+}
+
+.face,
+.back {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-card);
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.face {
+  background-color: var(--color-card-face);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 6px 7px;
+  justify-content: space-between;
+}
+
+.back {
+  background-color: var(--color-card-back);
+  background-image: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.08) 0,
+      rgba(255, 255, 255, 0.08) 2px,
+      transparent 2px,
+      transparent 10px
+    ),
+    radial-gradient(circle at 50% 50%, var(--color-card-back-pattern) 0%, var(--color-card-back) 70%);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.back::after {
+  content: '♠';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: var(--color-gold-300);
+  opacity: 0.85;
+}
+
+.rankTop {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--font-mono-score);
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.rankBottom {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  align-self: flex-end;
+  transform: rotate(180deg);
+  font-family: var(--font-mono-score);
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.centerSuit {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.red {
+  color: var(--color-suit-red);
+}
+
+.black {
+  color: var(--color-suit-black);
+}
+
+.trumpBadge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: var(--color-gold-500);
+  color: var(--color-wood-900);
+  border-radius: var(--radius-pill);
+  font-size: 0.6rem;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  padding: 1px 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.placeholder {
+  width: var(--card-w, 70px);
+  height: var(--card-h, 98px);
+  border-radius: var(--radius-card);
+  border: 2px dashed rgba(245, 240, 225, 0.25);
+}

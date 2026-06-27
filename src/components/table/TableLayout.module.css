@@ -1,0 +1,32 @@
+.table {
+  display: grid;
+  grid-template-areas:
+    '. north .'
+    'west center east'
+    '. south .';
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-3);
+  align-items: center;
+  justify-items: center;
+  padding: var(--space-4) 0;
+}
+
+.north {
+  grid-area: north;
+}
+
+.south {
+  grid-area: south;
+}
+
+.east {
+  grid-area: east;
+}
+
+.west {
+  grid-area: west;
+}
+
+.center {
+  grid-area: center;
+}

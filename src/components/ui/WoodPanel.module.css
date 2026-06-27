@@ -1,0 +1,14 @@
+.panel {
+  background: linear-gradient(160deg, var(--color-wood-700) 0%, var(--color-wood-900) 100%);
+  border: 3px solid var(--color-gold-700);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-panel);
+  color: var(--color-text-on-wood);
+  padding: var(--space-5);
+}
+
+.panel :global(h1),
+.panel :global(h2),
+.panel :global(h3) {
+  color: var(--color-gold-200);
+}

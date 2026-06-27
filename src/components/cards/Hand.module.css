@@ -1,0 +1,18 @@
+.hand {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-3) 0;
+}
+
+.slot {
+  margin-left: -18px;
+  transition: transform 0.15s ease;
+}
+
+.slot:first-child {
+  margin-left: 0;
+}
+
+.highlighted {
+  transform: translateY(-10px);
+}

@@ -1,0 +1,28 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid var(--color-gold-500);
+  color: var(--color-gold-200);
+  border-radius: var(--radius-pill);
+  padding: 2px 10px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.75rem;
+  cursor: default;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.clickable:hover {
+  background: rgba(212, 175, 55, 0.3);
+}
+
+.active {
+  background: var(--color-gold-500);
+  color: var(--color-wood-900);
+}

@@ -1,0 +1,27 @@
+/* Self-hosted via @fontsource — keeps the PWA fully offline-capable (no Google Fonts CDN).
+   Only latin/latin-ext subsets are pulled in (Dutch needs nothing else) to keep the
+   precached font payload small. */
+@import '@fontsource/fredoka/latin-400.css';
+@import '@fontsource/fredoka/latin-500.css';
+@import '@fontsource/fredoka/latin-600.css';
+@import '@fontsource/fredoka/latin-700.css';
+@import '@fontsource/fredoka/latin-ext-400.css';
+@import '@fontsource/fredoka/latin-ext-500.css';
+@import '@fontsource/fredoka/latin-ext-600.css';
+@import '@fontsource/fredoka/latin-ext-700.css';
+@import '@fontsource/baloo-2/latin-600.css';
+@import '@fontsource/baloo-2/latin-700.css';
+@import '@fontsource/baloo-2/latin-800.css';
+@import '@fontsource/baloo-2/latin-ext-600.css';
+@import '@fontsource/baloo-2/latin-ext-700.css';
+@import '@fontsource/baloo-2/latin-ext-800.css';
+@import '@fontsource/nunito/latin-400.css';
+@import '@fontsource/nunito/latin-600.css';
+@import '@fontsource/nunito/latin-700.css';
+@import '@fontsource/nunito/latin-800.css';
+@import '@fontsource/nunito/latin-ext-400.css';
+@import '@fontsource/nunito/latin-ext-600.css';
+@import '@fontsource/nunito/latin-ext-700.css';
+@import '@fontsource/nunito/latin-ext-800.css';
+@import '@fontsource/jetbrains-mono/latin-600.css';
+@import '@fontsource/jetbrains-mono/latin-700.css';

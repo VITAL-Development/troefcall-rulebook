@@ -1,0 +1,44 @@
+.pile {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto;
+}
+
+.slot {
+  position: absolute;
+  transition: filter 0.2s ease;
+}
+
+.slotN {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.slotS {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.slotE {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.slotW {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.winner {
+  filter: drop-shadow(0 0 10px var(--color-gold-500));
+  z-index: 2;
+}
+
+.dimmed {
+  opacity: 0.55;
+}

@@ -1,0 +1,54 @@
+.seat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-gold-200);
+  font-size: 0.9rem;
+}
+
+.badges {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+  background: var(--color-gold-500);
+  color: var(--color-wood-900);
+}
+
+.team {
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+  border: 1px solid currentColor;
+}
+
+.team1 {
+  color: #f4b942;
+}
+
+.team2 {
+  color: #9ad1ff;
+}
+
+.content {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
