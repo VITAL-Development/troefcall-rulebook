@@ -14,6 +14,7 @@ export default defineConfig({
         name: 'Troefcall Regelboek',
         short_name: 'Troefcall',
         description: 'Het visuele regelboek en woordenboek voor Troefcall',
+        lang: 'nl',
         theme_color: '#1b4332',
         background_color: '#1b4332',
         display: 'standalone',
