@@ -9,9 +9,9 @@ const seatsEx1: [Seat, Seat, Seat, Seat] = [
 
 const seatsEx2: [Seat, Seat, Seat, Seat] = [
   { id: 'N', name: 'Noord', team: 1 },
-  { id: 'E', name: 'Oost', team: 2, isCaller: true },
+  { id: 'E', name: 'Oost', team: 2 },
   { id: 'S', name: 'Zuid', team: 1, isDealer: true },
-  { id: 'W', name: 'West', team: 2 },
+  { id: 'W', name: 'West', team: 2, isCaller: true },
 ]
 
 const seatsEx3: [Seat, Seat, Seat, Seat] = [
@@ -107,7 +107,7 @@ export const setupDealingTopic: RuleTopic = {
         {
           type: 'deal',
           hands: {
-            E: [
+            W: [
               { rank: 'A', suit: 'clubs' },
               { rank: '9', suit: 'spades' },
               { rank: '7', suit: 'diamonds' },
@@ -115,17 +115,17 @@ export const setupDealingTopic: RuleTopic = {
               { rank: '2', suit: 'clubs' },
             ],
           },
-          caption: 'Zuid is dealer. Oost, links van Zuid, is de caller en krijgt de eerste 5 kaarten.',
+          caption: 'Zuid is dealer. West, links van Zuid, is de caller en krijgt de eerste 5 kaarten.',
         },
         {
           type: 'callout',
           tone: 'warning',
-          text: 'Oost bekijkt de 5 kaarten: geen koning, vrouw of boer te zien. Een aas telt hier niet als plaatje.',
+          text: 'West bekijkt de 5 kaarten: geen koning, vrouw of boer te zien. Een aas telt hier niet als plaatje.',
         },
         {
           type: 'deal',
           hands: {
-            E: [
+            W: [
               { rank: 'A', suit: 'clubs' },
               { rank: '9', suit: 'spades' },
               { rank: '7', suit: 'diamonds' },
@@ -141,24 +141,24 @@ export const setupDealingTopic: RuleTopic = {
               { rank: '7', suit: 'clubs' },
             ],
           },
-          handCounts: { N: 13, S: 13, W: 13 },
+          handCounts: { N: 13, S: 13, E: 13 },
           caption:
-            'Voordat Oost iets zegt, wordt er gewoon verder gedeeld zoals gebruikelijk: Oost krijgt zijn volledige 13 kaarten, nog steeds zonder plaatje.',
+            'Voordat West iets zegt, wordt er gewoon verder gedeeld zoals gebruikelijk: West krijgt zijn volledige 13 kaarten, nog steeds zonder plaatje.',
         },
         {
           type: 'callout',
           tone: 'warning',
-          text: '"No picture no game": heeft de caller in alle 13 kaarten geen koning, vrouw of boer, dan mag Oost eigenhandig een nieuwe deling eisen, zonder de andere spelers te raadplegen.',
+          text: '"No picture no game": heeft de caller in alle 13 kaarten geen koning, vrouw of boer, dan mag West eigenhandig een nieuwe deling eisen, zonder de andere spelers te raadplegen.',
         },
         {
           type: 'callout',
           tone: 'info',
-          text: 'Oost claimt terecht: nieuwe deling! Was de claim onterecht geweest, dan had de tegenpartij (Noord/Zuid) 5 punten gekregen.',
+          text: 'West claimt terecht: nieuwe deling! Was de claim onterecht geweest, dan had de tegenpartij (Noord/Zuid) 5 punten gekregen.',
         },
         {
           type: 'deal',
           hands: {
-            E: [
+            W: [
               { rank: 'K', suit: 'spades' },
               { rank: '10', suit: 'hearts' },
               { rank: '8', suit: 'diamonds' },
@@ -166,19 +166,19 @@ export const setupDealingTopic: RuleTopic = {
               { rank: '2', suit: 'spades' },
             ],
           },
-          handCounts: { N: 0, S: 0, W: 0 },
-          caption: 'Er wordt opnieuw geschud en gedeeld. Oost krijgt een nieuwe eerste 5 kaarten — nu wél met een plaatje.',
+          handCounts: { N: 0, S: 0, E: 0 },
+          caption: 'Er wordt opnieuw geschud en gedeeld. West krijgt een nieuwe eerste 5 kaarten — nu wél met een plaatje.',
         },
         {
           type: 'declareTrump',
-          seat: 'E',
+          seat: 'W',
           suit: 'spades',
-          caption: 'Oost roept dit keer Schoppen als troef.',
+          caption: 'West roept dit keer Schoppen als troef.',
         },
         {
           type: 'deal',
           hands: {
-            E: [
+            W: [
               { rank: 'K', suit: 'spades' },
               { rank: '10', suit: 'hearts' },
               { rank: '8', suit: 'diamonds' },
@@ -194,7 +194,7 @@ export const setupDealingTopic: RuleTopic = {
               { rank: '8', suit: 'clubs' },
             ],
           },
-          handCounts: { N: 13, S: 13, W: 13 },
+          handCounts: { N: 13, S: 13, E: 13 },
           caption: 'De deling wordt afgemaakt: iedereen heeft weer 13 kaarten.',
         },
         {
