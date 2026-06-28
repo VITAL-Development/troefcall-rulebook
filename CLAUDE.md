@@ -77,6 +77,8 @@ After authoring or editing examples, run `npm run validate-content` to confirm e
 
 Builds the app, then FTPs `dist/` to `/public_html/troefcall_rulebook/` on Hetzner via FTPS (`dangerous-clean-slate: true` — full directory replace).
 
+Both pipelines use `paths-ignore: ['**/*.md', 'docs/**']` — neither fires on documentation-only changes.
+
 Required repo secrets: `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`.
 
 ## Gotchas
