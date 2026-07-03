@@ -42,10 +42,8 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // Note: this pattern matches "woff2" only, not "woff" — every browser capable
-        // of installing this PWA also supports woff2, so the legacy fallback files
-        // never enter precache.
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+        navigateFallback: '/index.html',
       },
     }),
   ],
