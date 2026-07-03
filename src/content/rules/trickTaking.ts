@@ -14,7 +14,7 @@ export const trickTakingTopic: RuleTopic = {
     'Zodra troef vastligt, draait elke slag om dezelfde drie vragen: moet je de gevraagde kleur volgen, mag je troeven, en wie heeft de hoogste kaart?',
   rules: [
     'Wie een slag leidt, bepaalt de gevraagde kleur. Spelers die deze kleur op de hand hebben, moeten bijspelen.',
-    'Heb je de gevraagde kleur niet, dan mag je vrij spelen — ook troef (troeven/snijden).',
+    'Heb je de gevraagde kleur niet, dan moet je troef spelen als je troef hebt (troeven/snijden). Is er al getroefd en heb je een hogere troefkaart, dan moet je overtroeven. Heb je helemaal geen troef, dan mag je vrij spelen.',
     'De hoogste kaart van de gevraagde kleur wint de slag, tenzij er getroefd is: dan wint de hoogste gespeelde troefkaart, ongeacht welke kleur er gevraagd was.',
     'De winnaar van een slag leidt automatisch de volgende slag.',
   ],
@@ -71,8 +71,8 @@ export const trickTakingTopic: RuleTopic = {
     {
       id: 'trick-taking-twist',
       level: 'twist',
-      title: 'Geen kleur? Dan mag je troeven',
-      narration: 'Wie de gevraagde kleur niet heeft, mag vrij spelen — inclusief troef. Maar wie de kleur wél heeft, moet volgen, ook als de slag al getroefd is.',
+      title: 'Geen kleur? Dan moet je troeven',
+      narration: 'Wie de gevraagde kleur niet heeft, moet troef spelen als die beschikbaar is. Wie de kleur wél heeft, moet altijd volgen — ook als de slag al getroefd is.',
       seats,
       trumpSuit: 'spades',
       steps: [
@@ -107,7 +107,7 @@ export const trickTakingTopic: RuleTopic = {
           type: 'play',
           seat: 'E',
           card: { rank: 'K', suit: 'spades' },
-          caption: 'Oost heeft geen Ruiten en mag vrij spelen — Oost troeft met de Koning Schoppen.',
+          caption: 'Oost heeft geen Ruiten en moet troeven — Oost troeft met de Koning Schoppen.',
         },
         {
           type: 'play',

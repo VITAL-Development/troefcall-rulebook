@@ -30,7 +30,7 @@ export const setupDealingTopic: RuleTopic = {
     'Er wordt om de hoogste kaart geloot: wie de hoogste kaart trekt, is dealer. De speler links van de dealer is de caller.',
     'De caller krijgt als enige eerst 5 kaarten en moet daaruit troef roepen vóórdat er verder gedeeld wordt. Eenmaal de tweede kaartenronde is gegeven, kan troef niet meer gewijzigd worden.',
     'Na de troefclaim deelt de dealer verder: 5 kaarten aan de overige drie spelers, daarna twee keer 4 kaarten rond — ook aan de caller — tot iedereen 13 kaarten heeft.',
-    '"No picture no game": heeft de caller in alle 13 kaarten geen koning, vrouw of boer (een aas telt niet als plaatje), dan mag de caller eigenhandig een nieuwe deling eisen. Een onterechte claim levert de tegenpartij 5 punten op.',
+    '"No picture no game": heeft de caller in alle 13 kaarten geen aas, koning, vrouw of boer, dan mag de caller eigenhandig een nieuwe deling eisen. Een onterechte claim levert de tegenpartij 5 punten op.',
     'Bij een misdeling (bijvoorbeeld een verkeerd geschud of gedeeld spel) krijgt de tegenpartij van de dealer 2 strafpunten, gemaximeerd op 2 misdelingen per ronde.',
   ],
   examples: [
@@ -108,7 +108,7 @@ export const setupDealingTopic: RuleTopic = {
           type: 'deal',
           hands: {
             W: [
-              { rank: 'A', suit: 'clubs' },
+              { rank: '6', suit: 'clubs' },
               { rank: '9', suit: 'spades' },
               { rank: '7', suit: 'diamonds' },
               { rank: '5', suit: 'hearts' },
@@ -120,13 +120,13 @@ export const setupDealingTopic: RuleTopic = {
         {
           type: 'callout',
           tone: 'warning',
-          text: 'West bekijkt de 5 kaarten: geen koning, vrouw of boer te zien. Een aas telt hier niet als plaatje.',
+          text: 'West bekijkt de 5 kaarten: geen aas, koning, vrouw of boer te zien.',
         },
         {
           type: 'deal',
           hands: {
             W: [
-              { rank: 'A', suit: 'clubs' },
+              { rank: '6', suit: 'clubs' },
               { rank: '9', suit: 'spades' },
               { rank: '7', suit: 'diamonds' },
               { rank: '5', suit: 'hearts' },
@@ -148,7 +148,7 @@ export const setupDealingTopic: RuleTopic = {
         {
           type: 'callout',
           tone: 'warning',
-          text: '"No picture no game": heeft de caller in alle 13 kaarten geen koning, vrouw of boer, dan mag West eigenhandig een nieuwe deling eisen, zonder de andere spelers te raadplegen.',
+          text: '"No picture no game": heeft de caller in alle 13 kaarten geen aas, koning, vrouw of boer, dan mag West eigenhandig een nieuwe deling eisen, zonder de andere spelers te raadplegen.',
         },
         {
           type: 'callout',
