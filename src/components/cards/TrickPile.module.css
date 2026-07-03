@@ -1,8 +1,21 @@
 .pile {
+  --pile-sz: 180px;
   position: relative;
-  width: 180px;
-  height: 180px;
+  width: var(--pile-sz);
+  height: var(--pile-sz);
   margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .pile {
+    --pile-sz: 160px;
+  }
+}
+
+@media (max-width: 430px) {
+  .pile {
+    --pile-sz: 120px;
+  }
 }
 
 .slot {
