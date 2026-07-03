@@ -13,6 +13,18 @@
   margin-left: 0;
 }
 
+@media (max-width: 768px) {
+  .slot {
+    margin-left: -26px;
+  }
+}
+
+@media (max-width: 430px) {
+  .slot {
+    margin-left: -38px;
+  }
+}
+
 .highlighted {
   transform: translateY(-10px);
 }
