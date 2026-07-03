@@ -8,6 +8,8 @@ import TrickTaking from '@/routes/rulebook/TrickTaking'
 import WinningAHand from '@/routes/rulebook/WinningAHand'
 import TrickResolutionDemo from '@/routes/demo/TrickResolutionDemo'
 import GlossaryIndex from '@/routes/glossary/GlossaryIndex'
+import SanctionsTable from '@/routes/glossary/SanctionsTable'
+import TournamentStructure from '@/routes/glossary/TournamentStructure'
 import DevKitchenSink from '@/routes/DevKitchenSink'
 
 export const router = createBrowserRouter([
@@ -23,6 +25,8 @@ export const router = createBrowserRouter([
       { path: 'rulebook/winning-a-hand', element: <WinningAHand /> },
       { path: 'demo/trick-resolution', element: <TrickResolutionDemo /> },
       { path: 'glossary', element: <GlossaryIndex /> },
+      { path: 'glossary/sanctions', element: <SanctionsTable /> },
+      { path: 'glossary/tournament-structure', element: <TournamentStructure /> },
       { path: 'glossary/:termSlug', element: <GlossaryIndex /> },
       { path: '*', element: <NotFound /> },
     ],
