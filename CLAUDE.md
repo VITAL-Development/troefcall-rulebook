@@ -4,7 +4,7 @@ Visual PWA rulebook for Troefcall, a Dutch 4-player trick-taking card game. Buil
 
 ## Commands
 
-Node is managed via nvm — run `nvm use 22` first (npm is not on PATH otherwise).
+Node is managed via nvm — run `nvm use 24` first (npm is not on PATH otherwise).
 
 ```bash
 npm run dev              # dev server → http://localhost:5173
@@ -83,7 +83,7 @@ Required repo secrets: `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`.
 
 ## Gotchas
 
-- **nvm**: `npm` is not on PATH until you run `nvm use 22`.
+- **nvm**: `npm` is not on PATH until you run `nvm use 24`.
 - **Playwright needs a build**: the e2e webServer is `vite preview` (port 4173), not the dev server. Run `npm run build` first.
 - **Vitest / Playwright separation**: `e2e/**` excluded in `vite.config.ts` — keep it there.
 - **Deploy is destructive**: `dangerous-clean-slate: true` wipes the remote directory on every deploy.
