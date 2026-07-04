@@ -116,30 +116,38 @@ test.describe('Caller and Dealer badges', () => {
 test.describe('Panel height stability', () => {
   const topics = ['setup-dealing', 'trick-taking', 'winning-a-hand', 'game-overview']
   const tabs = [/Eenvoudig/, /Met een twist/, /Volledig/]
+  // Different widths wrap callout/caption text differently — the bug only showed up at narrower
+  // widths than Playwright's 1280px default, so it's exercised at a few widths here.
+  const widths = [900, 1024, 1280]
 
   for (const topic of topics) {
-    test(`stepper panel height does not jump while clicking Volgende through ${topic}`, async ({ page }) => {
-      await page.goto(`/rulebook/${topic}`)
+    for (const width of widths) {
+      test(`stepper panel height does not jump while clicking Volgende through ${topic} at ${width}px`, async ({
+        page,
+      }) => {
+        await page.setViewportSize({ width, height: 900 })
+        await page.goto(`/rulebook/${topic}`)
 
-      const stepper = page.locator('[class*="_stepper_"]')
-      const next = page.getByRole('button', { name: 'Volgende' })
+        const stepper = page.locator('[class*="_stepper_"]')
+        const next = page.getByRole('button', { name: 'Volgende' })
 
-      for (const tabRe of tabs) {
-        const tab = page.getByRole('tab', { name: tabRe })
-        if (!(await tab.isVisible().catch(() => false))) continue
-        await tab.click()
+        for (const tabRe of tabs) {
+          const tab = page.getByRole('tab', { name: tabRe })
+          if (!(await tab.isVisible().catch(() => false))) continue
+          await tab.click()
 
-        const heights: number[] = []
-        for (let i = 0; i < 30; i++) {
-          const box = await stepper.boundingBox()
-          if (box) heights.push(box.height)
-          if (await next.isDisabled()) break
-          await next.click()
+          const heights: number[] = []
+          for (let i = 0; i < 30; i++) {
+            const box = await stepper.boundingBox()
+            if (box) heights.push(box.height)
+            if (await next.isDisabled()) break
+            await next.click()
+          }
+
+          expect(heights.length).toBeGreaterThan(0)
+          expect(Math.max(...heights) - Math.min(...heights)).toBeLessThanOrEqual(4)
         }
-
-        expect(heights.length).toBeGreaterThan(0)
-        expect(Math.max(...heights) - Math.min(...heights)).toBeLessThanOrEqual(4)
-      }
-    })
+      })
+    }
   }
 })

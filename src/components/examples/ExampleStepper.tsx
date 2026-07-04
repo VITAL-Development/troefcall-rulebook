@@ -83,8 +83,9 @@ export default function ExampleStepper({ example }: ExampleStepperProps) {
   const step = example.steps[index]
   const state = useMemo(() => accumulate(example.steps, index, example.trumpSuit), [example, index])
   const seatById = useMemo(() => new Map(example.seats.map((s) => [s.id, s])), [example])
-  const hasCallouts = useMemo(() => example.steps.some((s) => s.type === 'callout'), [example])
-  const maxScoreEntries = useMemo(() => example.steps.filter((s) => s.type === 'score').length, [example])
+  const calloutTexts = useMemo(() => example.steps.filter((s) => s.type === 'callout').map((s) => s.text), [example])
+  const scoreSteps = useMemo(() => example.steps.filter((s) => s.type === 'score'), [example])
+  const captions = useMemo(() => example.steps.map(stepCaption), [example])
   const hasPlays = useMemo(() => example.steps.some((s) => s.type === 'play'), [example])
   const hasDeals = useMemo(() => example.steps.some((s) => s.type === 'deal'), [example])
 
@@ -124,8 +125,16 @@ export default function ExampleStepper({ example }: ExampleStepperProps) {
         }
       />
 
-      {hasCallouts && (
+      {calloutTexts.length > 0 && (
         <div className={styles.bannerSlot}>
+          {/* Invisible copies of every callout this example can show, so the slot is always as
+              tall as the tallest one actually renders at the current viewport width — instead of
+              a hardcoded line-count guess that breaks whenever text wraps differently. */}
+          {calloutTexts.map((text, i) => (
+            <div key={i} className={styles.bannerGhost} aria-hidden="true">
+              {text}
+            </div>
+          ))}
           <AnimatePresence mode="wait">
             {state.latestCallout && (
               <motion.div
@@ -142,17 +151,28 @@ export default function ExampleStepper({ example }: ExampleStepperProps) {
         </div>
       )}
 
-      <p className={styles.caption}>{stepCaption(step)}</p>
+      <div className={styles.captionSlot}>
+        {captions.map((text, i) => (
+          <p key={i} className={styles.captionGhost} aria-hidden="true">
+            {text}
+          </p>
+        ))}
+        <p className={styles.caption}>{stepCaption(step)}</p>
+      </div>
 
-      {maxScoreEntries > 0 && (
-        <div
-          className={styles.scoreLog}
-          style={{ minHeight: `calc(${maxScoreEntries} * 47px + ${maxScoreEntries - 1} * var(--space-2))` }}
-        >
-          {state.scoreLog.map((entry, i) => (
-            <div key={i} className={styles.scoreEntry}>
-              <ScoreBadge points={entry.points} label={`punten koppel ${entry.team}`} />
-              <span>{entry.reason}</span>
+      {scoreSteps.length > 0 && (
+        <div className={styles.scoreLog}>
+          {/* Renders every score entry this example will ever show up front (matching its real
+              text and wrapping at the current width), only toggling visibility as steps reveal
+              them — so the log never grows once the first entry appears. */}
+          {scoreSteps.map((scoreStep, i) => (
+            <div
+              key={i}
+              className={styles.scoreEntry}
+              style={i >= state.scoreLog.length ? { visibility: 'hidden' } : undefined}
+            >
+              <ScoreBadge points={scoreStep.points} label={`punten koppel ${scoreStep.team}`} />
+              <span>{scoreStep.reason}</span>
             </div>
           ))}
         </div>
