@@ -73,9 +73,9 @@ After authoring or editing examples, run `npm run validate-content` to confirm e
 | `build` | `npm run build`, uploads `dist/` artifact |
 | `e2e` | downloads `dist/`, caches `~/.cache/ms-playwright`, runs Playwright, uploads HTML report |
 
-### `deploy.yml` — runs on merge to `main`
+### `deploy.yml` — runs on merge to `main` (or manually via `workflow_dispatch`)
 
-Builds the app, then FTPs `dist/` to `/public_html/troefcall_rulebook/` on Hetzner via FTPS (`dangerous-clean-slate: true` — full directory replace).
+Builds the app, then FTPs `dist/` to `/public_html/troefcall_rulebook/` on Hetzner via FTPS. Normal push-triggered deploys use the FTP action's default diff-based sync (tracked via a remote state file) — only changed/new files are uploaded and only files removed from `dist/` since the last deploy are deleted remotely. A full destructive clean-slate wipe (`dangerous-clean-slate: true`) is available only via manual `workflow_dispatch` with the `clean_slate` input set to `true`, intended as a drift-recovery tool (e.g. if the remote state file is lost or the server directory was hand-edited outside the pipeline) — it does not run automatically.
 
 Both pipelines use `paths-ignore: ['**/*.md', 'docs/**']` — neither fires on documentation-only changes.
 
@@ -86,5 +86,5 @@ Required repo secrets: `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`.
 - **nvm**: `npm` is not on PATH until you run `nvm use 24`.
 - **Playwright needs a build**: the e2e webServer is `vite preview` (port 4173), not the dev server. Run `npm run build` first.
 - **Vitest / Playwright separation**: `e2e/**` excluded in `vite.config.ts` — keep it there.
-- **Deploy is destructive**: `dangerous-clean-slate: true` wipes the remote directory on every deploy.
+- **Deploy clean-slate is manual-only**: normal push deploys use non-destructive diff sync; a full remote wipe only happens if someone runs `workflow_dispatch` with `clean_slate: true` — treat that as a deliberate drift-recovery action, not routine.
 - **PWA icons**: generated via `scripts/generate-icons.mjs` (uses `sharp`). Only woff2 fonts are precached; woff is excluded intentionally.
