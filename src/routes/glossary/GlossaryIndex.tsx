@@ -98,15 +98,6 @@ export default function GlossaryIndex() {
       <h1 className={styles.heading}>Woordenboek</h1>
       <p className={styles.intro}>Alle termen, rollen en regels van Troefcall op één plek.</p>
 
-      <div className={styles.subPageLinks}>
-        <Link to="/glossary/sanctions" className={styles.subPageLink}>
-          Sanctietabel
-        </Link>
-        <Link to="/glossary/tournament-structure" className={styles.subPageLink}>
-          Toernooistructuur
-        </Link>
-      </div>
-
       <input
         type="search"
         placeholder="Zoek een term…"

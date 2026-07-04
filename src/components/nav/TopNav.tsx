@@ -21,8 +21,14 @@ export default function TopNav() {
         <NavLink to="/demo/trick-resolution" className={navLinkClass}>
           Probeer het
         </NavLink>
-        <NavLink to="/glossary" className={navLinkClass}>
+        <NavLink to="/glossary" className={navLinkClass} end>
           Woordenboek
+        </NavLink>
+        <NavLink to="/glossary/sanctions" className={navLinkClass}>
+          Sanctietabel
+        </NavLink>
+        <NavLink to="/glossary/tournament-structure" className={navLinkClass}>
+          Toernooistructuur
         </NavLink>
       </div>
     </nav>
