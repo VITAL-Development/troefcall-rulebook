@@ -109,6 +109,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'Punten die worden toegekend aan de tegenpartij als straf voor een overtreding. Voorbeelden: 2 punten voor een misdeling, 5 punten voor een onterechte "no picture"-claim, 5 of 15 punten voor een kaart uit de beurt spelen.',
     relatedTerms: ['misdeal', 'no-picture-no-game'],
+    relatedRules: ['sanctions'],
   },
   {
     slug: 'competitiepunten',
@@ -117,7 +118,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'Punten die worden bijgehouden over een volledige match in een toernooi. Een overwinning levert 3 competitiepunten op, een gelijkspel 1 punt en een verlies 0 punten.',
     relatedTerms: ['match', 'set'],
-    relatedRules: [],
+    relatedRules: ['tournament-structure'],
   },
 
   // ── roles ─────────────────────────────────────────────────────────────────
@@ -188,6 +189,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'Een set bestaat uit 4 spellen gespeeld aan één tafel. Na elke set roteren de lopende koppels naar een volgende tafel.',
     relatedTerms: ['match', 'tafelrotatie', 'lopende-koppels'],
+    relatedRules: ['tournament-structure'],
   },
   {
     slug: 'match',
@@ -196,6 +198,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'Een volledige match bestaat uit 8 sets. De competitiepunten over de gehele match bepalen de eindstand.',
     relatedTerms: ['set', 'competitiepunten'],
+    relatedRules: ['tournament-structure'],
   },
   {
     slug: 'tafelrotatie',
@@ -204,6 +207,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'Na elke set verplaatsen de lopende koppels zich naar de volgende tafel (doorgaans met de klok mee). De zittende koppels blijven aan dezelfde tafel. Zo ontmoeten koppels in de loop van een match meerdere tegenstanders.',
     relatedTerms: ['lopende-koppels', 'set'],
+    relatedRules: ['tournament-structure'],
   },
   {
     slug: 'lopende-koppels',
@@ -212,6 +216,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'De koppels die na elke set van tafel wisselen tijdens een toernooi. Tegenover hen staan de zittende koppels die aan dezelfde tafel blijven.',
     relatedTerms: ['tafelrotatie', 'set'],
+    relatedRules: ['tournament-structure'],
   },
 
   // ── sanctions ─────────────────────────────────────────────────────────────
@@ -222,5 +227,6 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'Het bekijken van een reeds gewonnen en omgekeerde slag is verboden. De overtreder geeft de tegenpartij 2 strafpunten en het spel eindigt onmiddellijk.',
     relatedTerms: ['strafpunten', 'slag'],
+    relatedRules: ['sanctions'],
   },
 ]
