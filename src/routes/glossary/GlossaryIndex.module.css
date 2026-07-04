@@ -1,0 +1,181 @@
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.heading {
+  color: var(--color-gold-300);
+  margin: 0;
+}
+
+.intro {
+  color: var(--color-text-on-felt-dim);
+  margin: 0 0 var(--space-2);
+}
+
+.subPageLinks {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.subPageLink {
+  color: var(--color-gold-300);
+}
+
+.search {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-gold-700);
+  background: var(--color-felt-700);
+  color: var(--color-text-on-felt);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.search::placeholder {
+  color: var(--color-text-on-felt-dim);
+}
+
+.categoryFilters {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.empty {
+  color: var(--color-text-on-felt-dim);
+  font-style: italic;
+}
+
+/* Wood-framed felt board holding the term tiles */
+.board {
+  background: linear-gradient(160deg, var(--color-wood-700) 0%, var(--color-wood-900) 100%);
+  border: 3px solid var(--color-gold-700);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-panel);
+  padding: var(--space-6);
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-6) var(--space-5);
+}
+
+/* Individual term tile, styled as a tilted playing card */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  background: var(--color-card-face);
+  color: var(--color-text-body);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card-resting);
+  padding: var(--space-5);
+  scroll-margin-top: 5rem;
+  transform: rotate(var(--tilt, -2deg));
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover,
+.card:focus-within {
+  transform: rotate(0deg) translateY(-6px);
+  box-shadow: var(--shadow-card-lifted);
+}
+
+.highlighted {
+  transform: rotate(0deg);
+  box-shadow: var(--shadow-gold-glow);
+}
+
+.tiltLeft {
+  --tilt: -2.5deg;
+}
+
+.tiltRight {
+  --tilt: 2.5deg;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cardDesc {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--color-text-body);
+  opacity: 0.85;
+}
+
+.cardFooter {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-card-face-shade);
+  font-size: 0.8rem;
+  color: var(--color-felt-600);
+}
+
+.cardFooter a {
+  color: var(--color-felt-600);
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .board {
+    padding: var(--space-4);
+  }
+
+  .tiles {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-5) var(--space-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: var(--space-5) var(--space-3);
+    gap: var(--space-3);
+  }
+
+  .board {
+    padding: var(--space-3);
+    border-radius: var(--radius-card);
+  }
+
+  .tiles {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .card {
+    transform: none;
+  }
+
+  .card:hover,
+  .card:focus-within {
+    transform: translateY(-4px);
+  }
+}
