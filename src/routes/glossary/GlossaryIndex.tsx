@@ -1,9 +1,10 @@
 import { useState, useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { GLOSSARY_TERMS } from '@/content/glossary/index'
-import type { GlossaryCategory } from '@/content/glossary-types'
+import type { GlossaryCategory, GlossaryTerm } from '@/content/glossary-types'
 import Tag from '@/components/ui/Tag'
 import GlossaryLink from '@/components/GlossaryLink'
+import styles from './GlossaryIndex.module.css'
 
 const ALL_CATEGORIES: GlossaryCategory[] = ['gameplay', 'scoring', 'roles', 'tournament', 'sanctions']
 
@@ -13,6 +14,65 @@ const CATEGORY_LABELS: Record<GlossaryCategory, string> = {
   roles: 'Rollen',
   tournament: 'Toernooi',
   sanctions: 'Sancties',
+}
+
+interface TermCardProps {
+  term: GlossaryTerm
+  index: number
+  highlighted: boolean
+}
+
+function TermCard({ term, index, highlighted }: TermCardProps) {
+  return (
+    <div
+      id={term.slug}
+      className={[
+        styles.card,
+        index % 2 === 0 ? styles.tiltLeft : styles.tiltRight,
+        highlighted ? styles.highlighted : '',
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    >
+      <div className={styles.cardHeader}>
+        <h2 className={styles.cardTitle}>{term.term}</h2>
+        <Tag>{CATEGORY_LABELS[term.category]}</Tag>
+      </div>
+      <p className={styles.cardDesc}>{term.definition}</p>
+
+      {((term.relatedTerms && term.relatedTerms.length > 0) ||
+        (term.relatedRules && term.relatedRules.length > 0)) && (
+        <div className={styles.cardFooter}>
+          {term.relatedTerms && term.relatedTerms.length > 0 && (
+            <span>
+              Zie ook:{' '}
+              {term.relatedTerms.map((slug, i) => {
+                const linked = GLOSSARY_TERMS.find((t) => t.slug === slug)
+                return (
+                  <span key={slug}>
+                    {i > 0 && ', '}
+                    <GlossaryLink slug={slug}>{linked?.term ?? slug}</GlossaryLink>
+                  </span>
+                )
+              })}
+            </span>
+          )}
+
+          {term.relatedRules && term.relatedRules.length > 0 && (
+            <span>
+              Regelboek:{' '}
+              {term.relatedRules.map((rule, i) => (
+                <span key={rule}>
+                  {i > 0 && ', '}
+                  <Link to={`/rulebook/${rule}`}>{rule}</Link>
+                </span>
+              ))}
+            </span>
+          )}
+        </div>
+      )}
+    </div>
+  )
 }
 
 export default function GlossaryIndex() {
@@ -34,15 +94,17 @@ export default function GlossaryIndex() {
   }, [search, activeCategory])
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
-      <h1>Woordenboek</h1>
-      <p style={{ opacity: 0.8, marginBottom: '1.5rem' }}>
-        Alle termen, rollen en regels van Troefcall op één plek.
-      </p>
+    <div className={styles.page}>
+      <h1 className={styles.heading}>Woordenboek</h1>
+      <p className={styles.intro}>Alle termen, rollen en regels van Troefcall op één plek.</p>
 
-      <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
-        <Link to="/glossary/sanctions">Sanctietabel</Link>
-        <Link to="/glossary/tournament-structure">Toernooistructuur</Link>
+      <div className={styles.subPageLinks}>
+        <Link to="/glossary/sanctions" className={styles.subPageLink}>
+          Sanctietabel
+        </Link>
+        <Link to="/glossary/tournament-structure" className={styles.subPageLink}>
+          Toernooistructuur
+        </Link>
       </div>
 
       <input
@@ -51,20 +113,10 @@ export default function GlossaryIndex() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         aria-label="Zoek in het woordenboek"
-        style={{
-          width: '100%',
-          padding: '0.5rem 0.75rem',
-          marginBottom: '1rem',
-          borderRadius: '6px',
-          border: '1px solid rgba(212,175,55,0.4)',
-          background: 'rgba(0,0,0,0.3)',
-          color: 'inherit',
-          fontSize: '1rem',
-          boxSizing: 'border-box',
-        }}
+        className={styles.search}
       />
 
-      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
+      <div className={styles.categoryFilters}>
         <Tag onClick={() => setActiveCategory('all')} active={activeCategory === 'all'}>
           Alles
         </Tag>
@@ -80,62 +132,15 @@ export default function GlossaryIndex() {
       </div>
 
       {filtered.length === 0 ? (
-        <p style={{ opacity: 0.6, fontStyle: 'italic' }}>Geen termen gevonden.</p>
+        <p className={styles.empty}>Geen termen gevonden.</p>
       ) : (
-        <dl>
-          {filtered.map((term) => {
-            const isHighlighted = termSlug === term.slug
-            return (
-              <div
-                key={term.slug}
-                id={term.slug}
-                style={{
-                  marginBottom: '2rem',
-                  scrollMarginTop: '5rem',
-                  borderBottom: '1px solid rgba(212,175,55,0.15)',
-                  outline: isHighlighted ? '2px solid rgba(212,175,55,0.6)' : undefined,
-                  borderRadius: isHighlighted ? '4px' : undefined,
-                  padding: isHighlighted ? '0.75rem' : '0 0 1.5rem',
-                }}
-              >
-                <dt
-                  style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.4rem' }}
-                >
-                  <strong style={{ fontSize: '1.1rem' }}>{term.term}</strong>
-                  <Tag>{CATEGORY_LABELS[term.category]}</Tag>
-                </dt>
-                <dd style={{ margin: 0, lineHeight: 1.6, opacity: 0.9 }}>{term.definition}</dd>
-
-                {term.relatedTerms && term.relatedTerms.length > 0 && (
-                  <dd style={{ margin: '0.5rem 0 0', fontSize: '0.85rem', opacity: 0.7 }}>
-                    Zie ook:{' '}
-                    {term.relatedTerms.map((slug, i) => {
-                      const linked = GLOSSARY_TERMS.find((t) => t.slug === slug)
-                      return (
-                        <span key={slug}>
-                          {i > 0 && ', '}
-                          <GlossaryLink slug={slug}>{linked?.term ?? slug}</GlossaryLink>
-                        </span>
-                      )
-                    })}
-                  </dd>
-                )}
-
-                {term.relatedRules && term.relatedRules.length > 0 && (
-                  <dd style={{ margin: '0.25rem 0 0', fontSize: '0.85rem', opacity: 0.7 }}>
-                    Regelboek:{' '}
-                    {term.relatedRules.map((rule, i) => (
-                      <span key={rule}>
-                        {i > 0 && ', '}
-                        <Link to={`/rulebook/${rule}`}>{rule}</Link>
-                      </span>
-                    ))}
-                  </dd>
-                )}
-              </div>
-            )
-          })}
-        </dl>
+        <div className={styles.board}>
+          <div className={styles.tiles}>
+            {filtered.map((term, index) => (
+              <TermCard key={term.slug} term={term} index={index} highlighted={termSlug === term.slug} />
+            ))}
+          </div>
+        </div>
       )}
     </div>
   )
