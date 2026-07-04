@@ -17,16 +17,6 @@
   margin: 0 0 var(--space-2);
 }
 
-.subPageLinks {
-  display: flex;
-  gap: var(--space-4);
-  flex-wrap: wrap;
-}
-
-.subPageLink {
-  color: var(--color-gold-300);
-}
-
 .search {
   width: 100%;
   padding: var(--space-2) var(--space-3);
