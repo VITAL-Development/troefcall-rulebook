@@ -36,7 +36,7 @@ function TermCard({ term, index, highlighted }: TermCardProps) {
     >
       <div className={styles.cardHeader}>
         <h2 className={styles.cardTitle}>{term.term}</h2>
-        <Tag>{CATEGORY_LABELS[term.category]}</Tag>
+        <Tag onLight>{CATEGORY_LABELS[term.category]}</Tag>
       </div>
       <p className={styles.cardDesc}>{term.definition}</p>
 
