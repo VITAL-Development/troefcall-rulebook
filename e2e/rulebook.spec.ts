@@ -112,3 +112,34 @@ test.describe('Caller and Dealer badges', () => {
     await expect(page.getByText('Caller').first()).toBeVisible()
   })
 })
+
+test.describe('Panel height stability', () => {
+  const topics = ['setup-dealing', 'trick-taking', 'winning-a-hand', 'game-overview']
+  const tabs = [/Eenvoudig/, /Met een twist/, /Volledig/]
+
+  for (const topic of topics) {
+    test(`stepper panel height does not jump while clicking Volgende through ${topic}`, async ({ page }) => {
+      await page.goto(`/rulebook/${topic}`)
+
+      const stepper = page.locator('[class*="_stepper_"]')
+      const next = page.getByRole('button', { name: 'Volgende' })
+
+      for (const tabRe of tabs) {
+        const tab = page.getByRole('tab', { name: tabRe })
+        if (!(await tab.isVisible().catch(() => false))) continue
+        await tab.click()
+
+        const heights: number[] = []
+        for (let i = 0; i < 30; i++) {
+          const box = await stepper.boundingBox()
+          if (box) heights.push(box.height)
+          if (await next.isDisabled()) break
+          await next.click()
+        }
+
+        expect(heights.length).toBeGreaterThan(0)
+        expect(Math.max(...heights) - Math.min(...heights)).toBeLessThanOrEqual(4)
+      }
+    })
+  }
+})

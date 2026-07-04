@@ -83,6 +83,10 @@ export default function ExampleStepper({ example }: ExampleStepperProps) {
   const step = example.steps[index]
   const state = useMemo(() => accumulate(example.steps, index, example.trumpSuit), [example, index])
   const seatById = useMemo(() => new Map(example.seats.map((s) => [s.id, s])), [example])
+  const hasCallouts = useMemo(() => example.steps.some((s) => s.type === 'callout'), [example])
+  const maxScoreEntries = useMemo(() => example.steps.filter((s) => s.type === 'score').length, [example])
+  const hasPlays = useMemo(() => example.steps.some((s) => s.type === 'play'), [example])
+  const hasDeals = useMemo(() => example.steps.some((s) => s.type === 'deal'), [example])
 
   return (
     <div className={styles.stepper}>
@@ -97,7 +101,7 @@ export default function ExampleStepper({ example }: ExampleStepperProps) {
           const cards = state.hands[seatId]
           const count = state.handCounts[seatId]
           return (
-            <PlayerSeat seat={seat}>
+            <PlayerSeat seat={seat} reserveHandHeight={hasDeals}>
               {cards ? (
                 <Hand cards={cards} size="sm" trumpSuit={state.trumpSuit} />
               ) : count ? (
@@ -107,35 +111,44 @@ export default function ExampleStepper({ example }: ExampleStepperProps) {
           )
         }}
         center={
-          state.trickPlays.length > 0 ? (
-            <TrickPile plays={state.trickPlays} winningSeat={state.winningSeat} />
-          ) : state.trumpSuit ? (
-            <span className={styles.trumpBadge}>
-              <SuitIcon suit={state.trumpSuit} size={14} color="var(--color-wood-900)" />
-              Troef: {SUIT_NAME_NL[state.trumpSuit]}
-            </span>
-          ) : null
+          <div className={hasPlays ? styles.centerSlot : undefined}>
+            {state.trickPlays.length > 0 ? (
+              <TrickPile plays={state.trickPlays} winningSeat={state.winningSeat} />
+            ) : state.trumpSuit ? (
+              <span className={styles.trumpBadge}>
+                <SuitIcon suit={state.trumpSuit} size={14} color="var(--color-wood-900)" />
+                Troef: {SUIT_NAME_NL[state.trumpSuit]}
+              </span>
+            ) : null}
+          </div>
         }
       />
 
-      <AnimatePresence mode="wait">
-        {state.latestCallout && (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: -6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            className={[styles.banner, styles[state.latestCallout.tone]].join(' ')}
-          >
-            {state.latestCallout.text}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {hasCallouts && (
+        <div className={styles.bannerSlot}>
+          <AnimatePresence mode="wait">
+            {state.latestCallout && (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: -6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className={[styles.banner, styles[state.latestCallout.tone]].join(' ')}
+              >
+                {state.latestCallout.text}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      )}
 
       <p className={styles.caption}>{stepCaption(step)}</p>
 
-      {state.scoreLog.length > 0 && (
-        <div className={styles.scoreLog}>
+      {maxScoreEntries > 0 && (
+        <div
+          className={styles.scoreLog}
+          style={{ minHeight: `calc(${maxScoreEntries} * 47px + ${maxScoreEntries - 1} * var(--space-2))` }}
+        >
           {state.scoreLog.map((entry, i) => (
             <div key={i} className={styles.scoreEntry}>
               <ScoreBadge points={entry.points} label={`punten koppel ${entry.team}`} />
