@@ -1,5 +1,5 @@
 .page {
-  max-width: 880px;
+  max-width: 960px;
   margin: 0 auto;
   padding: var(--space-6) var(--space-4);
   display: flex;
@@ -14,14 +14,162 @@
 
 .intro {
   color: var(--color-text-on-felt-dim);
-  margin: 0;
+  margin: 0 0 var(--space-2);
 }
 
-.list {
+/* Wood-framed felt board holding the topic tiles */
+.board {
+  background: linear-gradient(160deg, var(--color-wood-700) 0%, var(--color-wood-900) 100%);
+  border: 3px solid var(--color-gold-700);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-panel);
+  padding: var(--space-6);
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-6) var(--space-5);
+}
+
+/* Individual topic tile, styled as a tilted playing card */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  background: var(--color-card-face);
+  color: var(--color-text-body);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card-resting);
+  padding: var(--space-5);
+  text-decoration: none;
+  transform: rotate(var(--tilt, -2deg));
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: rotate(0deg) translateY(-6px);
+  box-shadow: var(--shadow-card-lifted);
+  text-decoration: none;
+  color: var(--color-text-body);
+}
+
+.tiltLeft {
+  --tilt: -2.5deg;
+}
+
+.tiltRight {
+  --tilt: 2.5deg;
+}
+
+.cardSuit {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-4);
+  font-size: 1.75rem;
+  font-family: var(--font-display);
+  line-height: 1;
+  opacity: 0.85;
+}
+
+.suitRed {
+  color: var(--color-suit-red);
+}
+
+.suitBlack {
+  color: var(--color-suit-black);
+}
+
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
   margin: 0;
-  padding-left: 1.2em;
+  padding-right: var(--space-6);
+}
+
+.cardDesc {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--color-text-body);
+  opacity: 0.85;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cardFooter {
+  margin-top: auto;
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  line-height: 2;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-card-face-shade);
+}
+
+.stepCount {
+  font-family: var(--font-mono-score);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--color-felt-600);
+}
+
+.levelPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.levelPill {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-card-face-shade);
+  color: var(--color-felt-900);
+}
+
+@media (max-width: 768px) {
+  .board {
+    padding: var(--space-4);
+  }
+
+  .tiles {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-5) var(--space-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: var(--space-5) var(--space-3);
+    gap: var(--space-3);
+  }
+
+  .board {
+    padding: var(--space-3);
+    border-radius: var(--radius-card);
+  }
+
+  .tiles {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .card {
+    transform: none;
+  }
+
+  .card:hover,
+  .card:focus-visible {
+    transform: translateY(-4px);
+  }
 }

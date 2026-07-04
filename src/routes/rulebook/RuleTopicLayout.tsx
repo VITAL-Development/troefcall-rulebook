@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import type { RuleTopic } from '@/content/types'
 import WoodPanel from '@/components/ui/WoodPanel'
 import ExampleTabs from '@/components/examples/ExampleTabs'
@@ -15,14 +16,21 @@ export default function RuleTopicLayout({ topic }: RuleTopicLayoutProps) {
 
   return (
     <div className={styles.page}>
-      <h1>{topic.title}</h1>
-      <p className={styles.intro}>{topic.intro}</p>
+      <Link to="/rulebook" className={styles.breadcrumb}>
+        &larr; Regelboek
+      </Link>
 
-      <ul className={styles.rules}>
-        {topic.rules.map((rule, i) => (
-          <li key={i}>{rule}</li>
-        ))}
-      </ul>
+      <h1 className={styles.heading}>{topic.title}</h1>
+
+      <div className={styles.briefing}>
+        <p className={styles.intro}>{topic.intro}</p>
+
+        <ul className={styles.rules}>
+          {topic.rules.map((rule, i) => (
+            <li key={i}>{rule}</li>
+          ))}
+        </ul>
+      </div>
 
       <WoodPanel>
         <h2>Voorbeelden</h2>
