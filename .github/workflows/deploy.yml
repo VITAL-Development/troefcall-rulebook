@@ -7,6 +7,13 @@ on:
     paths-ignore:
       - '**/*.md'
       - 'docs/**'
+  workflow_dispatch:
+    inputs:
+      clean_slate:
+        description: 'Full clean-slate wipe of remote server-dir before deploy (drift-recovery only; destructive)'
+        type: boolean
+        default: false
+        required: false
 
 permissions:
   contents: read
@@ -57,4 +64,4 @@ jobs:
           local-dir: ./dist/
           server-dir: /public_html/troefcall_rulebook/
           protocol: ftps
-          dangerous-clean-slate: true
+          dangerous-clean-slate: ${{ github.event_name == 'workflow_dispatch' && inputs.clean_slate == true }}
