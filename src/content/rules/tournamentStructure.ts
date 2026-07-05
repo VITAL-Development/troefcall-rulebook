@@ -8,7 +8,7 @@ const seats: [Seat, Seat, Seat, Seat] = [
 ]
 
 export const tournamentStructureTopic: RuleTopic = {
-  id: 'tournament-structure',
+  id: 'toernooistructuur',
   title: 'Toernooistructuur & competitiepunten',
   intro:
     'Een losse hand levert punten op (zie "Een hand winnen"), maar op een clubavond tellen die punten op tot een setuitslag, en setuitslagen tellen weer op tot een matchstand. Dit hoofdstuk legt de opbouw van een toernooi uit: sets, matches, tafelrotatie en competitiepunten.',

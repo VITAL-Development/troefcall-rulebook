@@ -2,24 +2,24 @@ import { test, expect } from '@playwright/test'
 
 test.describe('Rulebook pages load', () => {
   test('setup & dealing page renders', async ({ page }) => {
-    await page.goto('/rulebook/setup-dealing')
+    await page.goto('/regelboek/schudden-en-delen')
     await expect(page.getByRole('heading', { name: 'Schudden, delen & troef roepen' })).toBeVisible()
   })
 
   test('trick-taking page renders', async ({ page }) => {
-    await page.goto('/rulebook/trick-taking')
+    await page.goto('/regelboek/slag-spelen')
     await expect(page.getByRole('heading', { name: 'Een slag spelen' })).toBeVisible()
   })
 
   test('winning-a-hand page renders', async ({ page }) => {
-    await page.goto('/rulebook/winning-a-hand')
+    await page.goto('/regelboek/hand-winnen')
     await expect(page.getByRole('heading', { name: 'Een hand winnen' })).toBeVisible()
   })
 })
 
 test.describe('Tab switching', () => {
   test('all three tabs are present and switchable', async ({ page }) => {
-    await page.goto('/rulebook/setup-dealing')
+    await page.goto('/regelboek/schudden-en-delen')
 
     const simple = page.getByRole('tab', { name: /Eenvoudig/ })
     const twist  = page.getByRole('tab', { name: /Met een twist/ })
@@ -45,7 +45,7 @@ test.describe('Tab switching', () => {
 
 test.describe('Step navigation', () => {
   test('Volgende advances and Vorige goes back', async ({ page }) => {
-    await page.goto('/rulebook/setup-dealing')
+    await page.goto('/regelboek/schudden-en-delen')
 
     await expect(page.getByText('Stap 1 /')).toBeVisible()
 
@@ -57,12 +57,12 @@ test.describe('Step navigation', () => {
   })
 
   test('Vorige is disabled on the first step', async ({ page }) => {
-    await page.goto('/rulebook/setup-dealing')
+    await page.goto('/regelboek/schudden-en-delen')
     await expect(page.getByRole('button', { name: 'Vorige' })).toBeDisabled()
   })
 
   test('Volgende is disabled on the last step', async ({ page }) => {
-    await page.goto('/rulebook/setup-dealing')
+    await page.goto('/regelboek/schudden-en-delen')
     // Advance to the last step by clicking until Volgende is disabled
     const next = page.getByRole('button', { name: 'Volgende' })
     while (await next.isEnabled()) {
@@ -74,7 +74,7 @@ test.describe('Step navigation', () => {
 
 test.describe('Trump highlighting', () => {
   test('trump badge appears after a trump declaration step', async ({ page }) => {
-    await page.goto('/rulebook/setup-dealing')
+    await page.goto('/regelboek/schudden-en-delen')
 
     // Advance until the trump badge appears (step 3 in the simple example declares trump)
     const next = page.getByRole('button', { name: 'Volgende' })
@@ -90,7 +90,7 @@ test.describe('Trump highlighting', () => {
 
 test.describe('Score badges', () => {
   test('score badge appears in the full misdeal example', async ({ page }) => {
-    await page.goto('/rulebook/setup-dealing')
+    await page.goto('/regelboek/schudden-en-delen')
 
     await page.getByRole('tab', { name: /Volledig/ }).click()
 
@@ -107,14 +107,14 @@ test.describe('Score badges', () => {
 
 test.describe('Caller and Dealer badges', () => {
   test('Dealer and Caller badges are shown on the table', async ({ page }) => {
-    await page.goto('/rulebook/setup-dealing')
+    await page.goto('/regelboek/schudden-en-delen')
     await expect(page.getByText('Dealer').first()).toBeVisible()
     await expect(page.getByText('Caller').first()).toBeVisible()
   })
 })
 
 test.describe('Panel height stability', () => {
-  const topics = ['setup-dealing', 'trick-taking', 'winning-a-hand', 'game-overview']
+  const topics = ['schudden-en-delen', 'slag-spelen', 'hand-winnen', 'spelverloop']
   const tabs = [/Eenvoudig/, /Met een twist/, /Volledig/]
   // Different widths wrap callout/caption text differently — the bug only showed up at narrower
   // widths than Playwright's 1280px default, so it's exercised at a few widths here.
@@ -126,7 +126,7 @@ test.describe('Panel height stability', () => {
         page,
       }) => {
         await page.setViewportSize({ width, height: 900 })
-        await page.goto(`/rulebook/${topic}`)
+        await page.goto(`/regelboek/${topic}`)
 
         const stepper = page.locator('[class*="_stepper_"]')
         const next = page.getByRole('button', { name: 'Volgende' })

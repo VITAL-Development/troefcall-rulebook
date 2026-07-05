@@ -22,7 +22,7 @@ const seatsEx3: [Seat, Seat, Seat, Seat] = [
 ]
 
 export const setupDealingTopic: RuleTopic = {
-  id: 'setup-dealing',
+  id: 'schudden-en-delen',
   title: 'Schudden, delen & troef roepen',
   intro:
     'Voor er één kaart wordt gespeeld, moet de tafel eerst weten wie deelt, wie roept en welke kleur troef is. Deze stappen bepalen de rest van de hand.',

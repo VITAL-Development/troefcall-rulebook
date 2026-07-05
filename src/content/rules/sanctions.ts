@@ -8,7 +8,7 @@ const seats: [Seat, Seat, Seat, Seat] = [
 ]
 
 export const sanctionsTopic: RuleTopic = {
-  id: 'sanctions',
+  id: 'sancties',
   title: 'Sancties tijdens het spel',
   intro:
     'Naast misdelingen bij het schudden (zie "Schudden, delen & troef roepen") kent Troefcall ook sancties tijdens het uitspelen van de hand zelf: een kaart buiten de beurt, stiekem kijken naar een afgesloten slag, of kaarten niet netjes neerleggen aan het einde. De hoogte van de straf hangt af van het moment in de hand en van hoeveel slagen de overtreder al heeft.',

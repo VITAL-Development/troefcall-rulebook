@@ -8,7 +8,7 @@ const seats: [Seat, Seat, Seat, Seat] = [
 ]
 
 export const trickTakingTopic: RuleTopic = {
-  id: 'trick-taking',
+  id: 'slag-spelen',
   title: 'Een slag spelen',
   intro:
     'Zodra troef vastligt, draait elke slag om dezelfde drie vragen: moet je de gevraagde kleur volgen, mag je troeven, en wie heeft de hoogste kaart?',

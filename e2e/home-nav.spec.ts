@@ -24,21 +24,21 @@ test.describe('Home page content', () => {
   test('navigates from home to rulebook index', async ({ page }) => {
     await page.goto('/')
     await page.locator('main').getByRole('link', { name: 'Regelboek' }).click()
-    await expect(page).toHaveURL(/\/rulebook/)
+    await expect(page).toHaveURL(/\/regelboek/)
     await expect(page.getByRole('heading', { name: 'Regelboek' })).toBeVisible()
   })
 
   test('navigates from home to glossary index', async ({ page }) => {
     await page.goto('/')
     await page.locator('main').getByRole('link', { name: 'Woordenboek' }).click()
-    await expect(page).toHaveURL(/\/glossary/)
+    await expect(page).toHaveURL(/\/woordenboek/)
     await expect(page.getByRole('heading', { name: 'Woordenboek' })).toBeVisible()
   })
 
   test('navigates from home to demo', async ({ page }) => {
     await page.goto('/')
     await page.locator('main').getByRole('link', { name: 'Probeer het' }).click()
-    await expect(page).toHaveURL(/\/demo\/trick-resolution/)
+    await expect(page).toHaveURL(/\/demo\/slag-oplossen/)
   })
 })
 
@@ -68,13 +68,13 @@ test.describe('Responsive layout at 375px (mobile)', () => {
   })
 
   test('rulebook index does not overflow horizontally at 375px', async ({ page }) => {
-    await page.goto('/rulebook')
+    await page.goto('/regelboek')
     const scrollWidth = await page.evaluate(() => document.body.scrollWidth)
     expect(scrollWidth).toBeLessThanOrEqual(375)
   })
 
   test('glossary index does not overflow horizontally at 375px', async ({ page }) => {
-    await page.goto('/glossary')
+    await page.goto('/woordenboek')
     const scrollWidth = await page.evaluate(() => document.body.scrollWidth)
     expect(scrollWidth).toBeLessThanOrEqual(375)
   })
@@ -101,12 +101,12 @@ test.describe('Responsive layout at 1024px (tablet)', () => {
   })
 
   test('rulebook index loads correctly at 1024px', async ({ page }) => {
-    await page.goto('/rulebook')
+    await page.goto('/regelboek')
     await expect(page.getByRole('heading', { name: 'Regelboek' })).toBeVisible()
   })
 
   test('glossary index loads correctly at 1024px', async ({ page }) => {
-    await page.goto('/glossary')
+    await page.goto('/woordenboek')
     await expect(page.getByRole('heading', { name: 'Woordenboek' })).toBeVisible()
   })
 })

@@ -38,7 +38,7 @@ describe('authored rule content matches the trick-resolution engine', () => {
 })
 
 describe('kap and capituleren scoring rules', () => {
-  const winningTopic = RULE_TOPICS.find((t) => t.id === 'winning-a-hand')!
+  const winningTopic = RULE_TOPICS.find((t) => t.id === 'hand-winnen')!
 
   it('partner tapping out at kap yields only 2 points (not 5)', () => {
     // The twist example models a kap situation with two scenarios.
