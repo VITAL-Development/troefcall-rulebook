@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { TOURNAMENT_STRUCTURE } from '@/content/glossary/index'
 
 const OUTCOME_LABELS: Record<'win' | 'draw' | 'loss', string> = {
@@ -12,10 +11,6 @@ export default function TournamentStructure() {
 
   return (
     <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
-      <p style={{ marginBottom: '1rem' }}>
-        <Link to="/glossary">&larr; Woordenboek</Link>
-      </p>
-
       <h1>Toernooistructuur</h1>
       <p style={{ opacity: 0.8, marginBottom: '2rem' }}>
         Hoe een Troefcall-toernooi is opgebouwd: tafels, sets, matches en puntentelling.

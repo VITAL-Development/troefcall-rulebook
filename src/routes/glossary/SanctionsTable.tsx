@@ -1,13 +1,8 @@
-import { Link } from 'react-router-dom'
 import { SANCTION_RULES } from '@/content/glossary/index'
 
 export default function SanctionsTable() {
   return (
     <div style={{ padding: '2rem', maxWidth: '900px', margin: '0 auto' }}>
-      <p style={{ marginBottom: '1rem' }}>
-        <Link to="/glossary">&larr; Woordenboek</Link>
-      </p>
-
       <h1>Sancties</h1>
       <p style={{ opacity: 0.8, marginBottom: '2rem' }}>
         Overzicht van overtredingen en de bijbehorende straffen tijdens een Troefcall-spel.
