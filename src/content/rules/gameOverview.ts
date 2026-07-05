@@ -15,7 +15,7 @@ const plainSeats: [Seat, Seat, Seat, Seat] = [
 ]
 
 export const gameOverviewTopic: RuleTopic = {
-  id: 'game-overview',
+  id: 'spelverloop',
   title: 'Het spel in het kort: van deel tot score',
   intro:
     'Dit hoofdstuk loopt één volledige hand in vogelvlucht langs — van de deling tot de puntentelling — en laat zien hoe de andere hoofdstukken van dit regelboek in elkaar grijpen. Gebruik het als kompas voordat je de rest in detail leest.',

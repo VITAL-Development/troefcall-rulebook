@@ -22,7 +22,7 @@ function TopicCard({ topic, index }: TopicCardProps) {
 
   return (
     <Link
-      to={`/rulebook/${topic.id}`}
+      to={`/regelboek/${topic.id}`}
       className={[styles.card, index % 2 === 0 ? styles.tiltLeft : styles.tiltRight].join(' ')}
     >
       <span

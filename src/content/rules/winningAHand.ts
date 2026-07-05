@@ -8,7 +8,7 @@ const seats: [Seat, Seat, Seat, Seat] = [
 ]
 
 export const winningAHandTopic: RuleTopic = {
-  id: 'winning-a-hand',
+  id: 'hand-winnen',
   title: 'Een hand winnen',
   intro:
     'Aan het einde van een hand telt niet hoeveel punten je haalt binnen de slag, maar hoeveel slagen je koppel wint. Drie uitkomsten zijn mogelijk: een normale winst, kap, of baunie — elk met eigen punten en eigen regels.',

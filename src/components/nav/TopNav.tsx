@@ -15,19 +15,19 @@ export default function TopNav() {
         <NavLink to="/" className={navLinkClass} end>
           Home
         </NavLink>
-        <NavLink to="/rulebook" className={navLinkClass}>
+        <NavLink to="/regelboek" className={navLinkClass}>
           Regelboek
         </NavLink>
-        <NavLink to="/demo/trick-resolution" className={navLinkClass}>
+        <NavLink to="/demo/slag-oplossen" className={navLinkClass}>
           Probeer het
         </NavLink>
-        <NavLink to="/glossary" className={navLinkClass} end>
+        <NavLink to="/woordenboek" className={navLinkClass} end>
           Woordenboek
         </NavLink>
-        <NavLink to="/sanctions" className={navLinkClass}>
+        <NavLink to="/sancties" className={navLinkClass}>
           Sanctietabel
         </NavLink>
-        <NavLink to="/tournament-structure" className={navLinkClass}>
+        <NavLink to="/toernooistructuur" className={navLinkClass}>
           Toernooistructuur
         </NavLink>
       </div>

@@ -6,10 +6,10 @@ const VIEWPORTS = [
 ]
 
 for (const vp of VIEWPORTS) {
-  test.describe(`/demo/trick-resolution — ${vp.label}`, () => {
+  test.describe(`/demo/slag-oplossen — ${vp.label}`, () => {
     test.beforeEach(async ({ page }) => {
       await page.setViewportSize({ width: vp.width, height: vp.height })
-      await page.goto('/demo/trick-resolution')
+      await page.goto('/demo/slag-oplossen')
       await page.getByRole('button', { name: 'Start spel' }).click()
       // Wait for the table to be rendered (exact:true avoids matching "Noord/Zuid" in the score bar)
       await expect(page.getByText('Noord', { exact: true })).toBeVisible()

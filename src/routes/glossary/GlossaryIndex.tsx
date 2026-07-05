@@ -64,7 +64,7 @@ function TermCard({ term, index, highlighted }: TermCardProps) {
               {term.relatedRules.map((rule, i) => (
                 <span key={rule}>
                   {i > 0 && ', '}
-                  <Link to={`/rulebook/${rule}`}>{rule}</Link>
+                  <Link to={`/regelboek/${rule}`}>{rule}</Link>
                 </span>
               ))}
             </span>

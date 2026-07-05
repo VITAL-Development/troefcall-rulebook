@@ -10,8 +10,8 @@ interface GlossaryLinkProps {
 
 /**
  * Bidirectional link between glossary terms and rulebook pages.
- * Navigates to /glossary/<slug> and scrolls to the term anchor.
+ * Navigates to /woordenboek/<slug> and scrolls to the term anchor.
  */
 export default function GlossaryLink({ slug, children }: GlossaryLinkProps) {
-  return <Link to={`/glossary/${slug}`}>{children ?? slug}</Link>
+  return <Link to={`/woordenboek/${slug}`}>{children ?? slug}</Link>
 }

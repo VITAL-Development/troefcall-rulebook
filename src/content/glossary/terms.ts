@@ -9,7 +9,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'De troefkleur is de kleur die de caller vóór de volledige deling roept. Troefkaarten verslaan elke kaart van een andere kleur, ongeacht de waarde. Troef kan niet gewijzigd worden nadat de tweede kaartenronde is gegeven.',
     relatedTerms: ['bieder', 'slag', 'snijden'],
-    relatedRules: ['setup-dealing'],
+    relatedRules: ['schudden-en-delen'],
   },
   {
     slug: 'slag',
@@ -18,7 +18,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'Een slag bestaat uit vier kaarten — één van elke speler — en wordt gewonnen door de hoogste kaart van de aangespeelde kleur of, indien troef is gespeeld, door de hoogste troefkaart. De winnaar van een slag leidt de volgende slag.',
     relatedTerms: ['troef', 'leiden', 'volgen', 'snijden'],
-    relatedRules: ['trick-taking'],
+    relatedRules: ['slag-spelen'],
   },
   {
     slug: 'leiden',
@@ -35,7 +35,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'Een speler is verplicht om dezelfde kleur te spelen als de aangeleide kleur, als hij die kleur in zijn hand heeft. Pas als een speler geen kaart van de gevraagde kleur meer heeft, mag hij een andere kleur of troef spelen.',
     relatedTerms: ['slag', 'snijden', 'troef'],
-    relatedRules: ['trick-taking'],
+    relatedRules: ['slag-spelen'],
   },
   {
     slug: 'snijden',
@@ -44,25 +44,25 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'Het spelen van een troefkaart wanneer een speler geen kaarten meer heeft van de aangeleide kleur. Een gesneden slag wordt door de hoogste troefkaart gewonnen, ook als andere spelers nog hogere kaarten van de originele kleur spelen.',
     relatedTerms: ['troef', 'volgen', 'slag'],
-    relatedRules: ['trick-taking'],
+    relatedRules: ['slag-spelen'],
   },
   {
-    slug: 'misdeal',
+    slug: 'misdeling',
     term: 'Misdeling',
     category: 'gameplay',
     definition:
       'Een misdeling treedt op wanneer de dealer fout schudt of deelt (bv. kaarten zichtbaar of in verkeerde volgorde). De tegenpartij van de dealer krijgt 2 strafpunten per misdeling, met een maximum van 2 misdelingen per ronde. De troefclaim van de caller vervalt en er wordt opnieuw gedeeld.',
     relatedTerms: ['dealer', 'strafpunten'],
-    relatedRules: ['setup-dealing'],
+    relatedRules: ['schudden-en-delen'],
   },
   {
-    slug: 'no-picture-no-game',
+    slug: 'geen-plaatje-geen-spel',
     term: 'No picture, no game',
     category: 'gameplay',
     definition:
       'Als de caller in al zijn 13 kaarten geen koning, vrouw of boer heeft (een aas telt niet als plaatje), mag hij eigenhandig een nieuwe deling eisen. Een onterechte claim levert de tegenpartij 5 punten op.',
-    relatedTerms: ['bieder', 'misdeal'],
-    relatedRules: ['setup-dealing'],
+    relatedTerms: ['bieder', 'misdeling'],
+    relatedRules: ['schudden-en-delen'],
   },
   {
     slug: 'capituleren',
@@ -71,7 +71,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'De verliezende partij mag zich overgeven wanneer zij inschat dat zij de hand niet meer kunnen winnen. Het spel stopt en de punten worden verrekend zoals bij een reguliere overwinning van de winnende partij.',
     relatedTerms: ['kap', 'baunie'],
-    relatedRules: ['winning-a-hand'],
+    relatedRules: ['hand-winnen'],
   },
   {
     slug: 'bieden',
@@ -80,7 +80,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'Het uitroepen van de troefkleur. Alleen de caller (bieder), de speler links van de dealer, mag troef roepen. Dit gebeurt na het ontvangen van de eerste 5 kaarten en vóór de rest van de kaarten worden gedeeld.',
     relatedTerms: ['bieder', 'troef', 'dealer'],
-    relatedRules: ['setup-dealing'],
+    relatedRules: ['schudden-en-delen'],
   },
 
   // ── scoring ───────────────────────────────────────────────────────────────
@@ -91,7 +91,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'Als een partij precies 7 slagen wint en de hand daarna stopt, verdient zij 5 punten. Dit is het standaard doel van de aanvallende partij. De kap wordt ook uitgesproken als de winnende partij na de 7e slag aangeeft te stoppen.',
     relatedTerms: ['baunie', 'slag', 'capituleren'],
-    relatedRules: ['winning-a-hand'],
+    relatedRules: ['hand-winnen'],
   },
   {
     slug: 'baunie',
@@ -100,7 +100,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'Als een partij alle 13 slagen wint, verdient zij 15 punten in plaats van de gebruikelijke 5. Een baunie is de hoogst mogelijke score in een hand.',
     relatedTerms: ['kap', 'slag'],
-    relatedRules: ['winning-a-hand'],
+    relatedRules: ['hand-winnen'],
   },
   {
     slug: 'strafpunten',
@@ -108,8 +108,8 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     category: 'scoring',
     definition:
       'Punten die worden toegekend aan de tegenpartij als straf voor een overtreding. Voorbeelden: 2 punten voor een misdeling, 5 punten voor een onterechte "no picture"-claim, 5 of 15 punten voor een kaart uit de beurt spelen.',
-    relatedTerms: ['misdeal', 'no-picture-no-game'],
-    relatedRules: ['sanctions'],
+    relatedTerms: ['misdeling', 'geen-plaatje-geen-spel'],
+    relatedRules: ['sancties'],
   },
   {
     slug: 'competitiepunten',
@@ -118,7 +118,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'Punten die worden bijgehouden over een volledige match in een toernooi. Een overwinning levert 3 competitiepunten op, een gelijkspel 1 punt en een verlies 0 punten.',
     relatedTerms: ['match', 'set'],
-    relatedRules: ['tournament-structure'],
+    relatedRules: ['toernooistructuur'],
   },
 
   // ── roles ─────────────────────────────────────────────────────────────────
@@ -128,8 +128,8 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     category: 'roles',
     definition:
       'De speler die de kaarten schudt en deelt. De dealer roteert elke hand met de klok mee. De speler links van de dealer is de caller. Een foutieve deling door de dealer resulteert in strafpunten voor de tegenpartij.',
-    relatedTerms: ['bieder', 'misdeal'],
-    relatedRules: ['setup-dealing'],
+    relatedTerms: ['bieder', 'misdeling'],
+    relatedRules: ['schudden-en-delen'],
   },
   {
     slug: 'bieder',
@@ -138,7 +138,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'De speler direct links van de dealer. Alleen de caller ontvangt als eerste 5 kaarten en is de enige die troef mag roepen. Na de troefclaim wordt de rest van de hand gedeeld.',
     relatedTerms: ['dealer', 'troef', 'bieden'],
-    relatedRules: ['setup-dealing'],
+    relatedRules: ['schudden-en-delen'],
   },
   {
     slug: 'koppel',
@@ -189,7 +189,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'Een set bestaat uit 4 spellen gespeeld aan één tafel. Na elke set roteren de lopende koppels naar een volgende tafel.',
     relatedTerms: ['match', 'tafelrotatie', 'lopende-koppels'],
-    relatedRules: ['tournament-structure'],
+    relatedRules: ['toernooistructuur'],
   },
   {
     slug: 'match',
@@ -198,7 +198,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'Een volledige match bestaat uit 8 sets. De competitiepunten over de gehele match bepalen de eindstand.',
     relatedTerms: ['set', 'competitiepunten'],
-    relatedRules: ['tournament-structure'],
+    relatedRules: ['toernooistructuur'],
   },
   {
     slug: 'tafelrotatie',
@@ -207,7 +207,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'Na elke set verplaatsen de lopende koppels zich naar de volgende tafel (doorgaans met de klok mee). De zittende koppels blijven aan dezelfde tafel. Zo ontmoeten koppels in de loop van een match meerdere tegenstanders.',
     relatedTerms: ['lopende-koppels', 'set'],
-    relatedRules: ['tournament-structure'],
+    relatedRules: ['toernooistructuur'],
   },
   {
     slug: 'lopende-koppels',
@@ -216,7 +216,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'De koppels die na elke set van tafel wisselen tijdens een toernooi. Tegenover hen staan de zittende koppels die aan dezelfde tafel blijven.',
     relatedTerms: ['tafelrotatie', 'set'],
-    relatedRules: ['tournament-structure'],
+    relatedRules: ['toernooistructuur'],
   },
 
   // ── sanctions ─────────────────────────────────────────────────────────────
@@ -227,6 +227,6 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     definition:
       'Het bekijken van een reeds gewonnen en omgekeerde slag is verboden. De overtreder geeft de tegenpartij 2 strafpunten en het spel eindigt onmiddellijk.',
     relatedTerms: ['strafpunten', 'slag'],
-    relatedRules: ['sanctions'],
+    relatedRules: ['sancties'],
   },
 ]

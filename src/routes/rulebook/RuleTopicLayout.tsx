@@ -16,7 +16,7 @@ export default function RuleTopicLayout({ topic }: RuleTopicLayoutProps) {
 
   return (
     <div className={styles.page}>
-      <Link to="/rulebook" className={styles.breadcrumb}>
+      <Link to="/regelboek" className={styles.breadcrumb}>
         &larr; Regelboek
       </Link>
 

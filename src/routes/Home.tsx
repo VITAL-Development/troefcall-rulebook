@@ -30,19 +30,19 @@ export default function Home() {
 
       <section className={styles.cards} aria-label="Hoofdsecties">
         <SectionCard
-          to="/rulebook"
+          to="/regelboek"
           icon="&#9824;"
           title="Regelboek"
           description="Alle spelregels stap voor stap uitgelegd met interactieve voorbeelden."
         />
         <SectionCard
-          to="/glossary"
+          to="/woordenboek"
           icon="&#9827;"
           title="Woordenboek"
           description="Verklaringen van veelgebruikte termen in Troefcall."
         />
         <SectionCard
-          to="/demo/trick-resolution"
+          to="/demo/slag-oplossen"
           icon="&#9830;"
           title="Probeer het"
           description="Oefen het bepalen van de slagwinnaar in een interactieve demo."
