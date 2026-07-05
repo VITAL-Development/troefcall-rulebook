@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import RootLayout from '@/routes/RootLayout'
 import Home from '@/routes/Home'
+import OverOns from '@/routes/OverOns'
 import NotFound from '@/routes/NotFound'
 import RulebookIndex from '@/routes/rulebook/RulebookIndex'
 import GameOverview from '@/routes/rulebook/GameOverview'
@@ -22,6 +23,7 @@ export const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true, element: <Home /> },
+      { path: 'over-ons', element: <OverOns /> },
       { path: 'regelboek', element: <RulebookIndex /> },
       { path: 'regelboek/spelverloop', element: <GameOverview /> },
       { path: 'regelboek/schudden-en-delen', element: <SetupDealing /> },
