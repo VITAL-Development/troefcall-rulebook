@@ -79,7 +79,7 @@ Builds the app, then FTPs `dist/` to `/public_html/troefcall_rulebook/` on Hetzn
 
 Both pipelines use `paths-ignore: ['**/*.md', 'docs/**']` — neither fires on documentation-only changes.
 
-Required repo secrets: `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`.
+Required repo secrets: `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`, `FEEDBACK_EMAIL` (footer feedback `mailto:` address, injected at build time as `VITE_FEEDBACK_EMAIL`; see `.env.example` for local dev).
 
 ## Gotchas
 
