@@ -24,10 +24,10 @@ export default function TopNav() {
         <NavLink to="/glossary" className={navLinkClass} end>
           Woordenboek
         </NavLink>
-        <NavLink to="/glossary/sanctions" className={navLinkClass}>
+        <NavLink to="/sanctions" className={navLinkClass}>
           Sanctietabel
         </NavLink>
-        <NavLink to="/glossary/tournament-structure" className={navLinkClass}>
+        <NavLink to="/tournament-structure" className={navLinkClass}>
           Toernooistructuur
         </NavLink>
       </div>
