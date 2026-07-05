@@ -37,7 +37,7 @@ Example: Zuid (S) is dealer → West (W) is caller.
 
 **Component tree** (abbreviated):
 ```
-RootLayout (FeltSurface + TopNav)
+RootLayout (FeltSurface + TopNav + Footer)
 └── RuleTopicLayout
     ├── ExampleTabs          (simple / twist / full)
     └── ExampleStepper       (accumulates steps into visual state)

@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import TopNav from '@/components/nav/TopNav'
+import Footer from '@/components/nav/Footer'
 import FeltSurface from '@/components/table/FeltSurface'
 
 export default function RootLayout() {
@@ -21,6 +22,7 @@ export default function RootLayout() {
           <Outlet />
         </motion.main>
       </AnimatePresence>
+      <Footer />
     </FeltSurface>
   )
 }
