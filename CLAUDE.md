@@ -20,13 +20,30 @@ WSL note: the dev/preview server only binds to localhost by default. Pass `-- --
 
 ## Architecture
 
+**Routing** (`src/routes/router.tsx`): a single `createBrowserRouter` tree.
+`/` (Home), `/over-ons`, `/regelboek` + 6 topic pages, `/demo/slag-oplossen`
+(interactive trick demo), `/woordenboek` + `/woordenboek/:termSlug` (glossary),
+`/sancties`, `/toernooistructuur`, `/dev-kitchen-sink` (outside the layout), `*` → `NotFound`.
+All routes except `dev-kitchen-sink` render inside `RootLayout`.
+
 **Content model** (`src/content/types.ts`): all rulebook content is pure data.
 `RuleTopic` → `RuleExample[]` (simple / twist / full) → `ExampleStep[]`
 Step types: `deal`, `declareTrump`, `play`, `resolveTrick`, `callout`, `score`.
-Content lives in `src/content/rules/` (one file per topic).
+Content lives in `src/content/rules/` (one file per topic): `gameOverview`, `setupDealing`,
+`trickTaking`, `winningAHand`, `sanctions`, `tournamentStructure` — registered in `src/content/rules/index.ts`.
+
+**Glossary model** (`src/content/glossary-types.ts`): separate from rulebook content.
+`GlossaryTerm` (slug/term/category/definition/relatedTerms/relatedRules) and `SanctionRule`.
+Data lives in `src/content/glossary/` (`terms.ts`, `sanctions.ts`, `tournamentStructure.ts`),
+rendered by `src/routes/glossary/` (`GlossaryIndex`, `SanctionsTable`, `TournamentStructure`).
+`GlossaryLink` (`src/components/GlossaryLink.tsx`) is the bidirectional link between glossary
+terms and rulebook pages — navigates to `/woordenboek/<slug>`.
 
 **Engine** (`src/engine/trickResolution.ts`): pure functions with no side effects.
-Key exports: `rankValue`, `isLegalPlay`, `resolveTrick`. Tested independently from the UI.
+Key exports: `rankValue`, `isLegalPlay`, `resolveTrick`, `createDeck`, `dealHand`.
+Tested independently from the UI. Reused (not duplicated) by the interactive demo's own
+state machine in `src/routes/demo/TrickResolutionDemo.tsx` (`nextSeat`, `createInitialState`,
+`getPlayableCards`, `playCard`, `clearAndAdvance`).
 
 **Route pattern**: each rulebook page is `<RuleTopicLayout topic={...} />`.
 The layout owns tab switching (simple/twist/full) and step-by-step navigation.
@@ -38,25 +55,35 @@ Example: Zuid (S) is dealer → West (W) is caller.
 **Component tree** (abbreviated):
 ```
 RootLayout (FeltSurface + TopNav + Footer)
-└── RuleTopicLayout
-    ├── ExampleTabs          (simple / twist / full)
-    └── ExampleStepper       (accumulates steps into visual state)
-        ├── TableLayout      (N/E/S/W positions)
-        │   └── PlayerSeat   (Hand or CardBack, Dealer/Caller badges)
-        ├── TrickPile        (center)
-        └── ScoreBadge log
+├── Home / OverOns / NotFound
+├── RuleTopicLayout
+│   ├── ExampleTabs          (simple / twist / full)
+│   └── ExampleStepper       (accumulates steps into visual state)
+│       ├── TableLayout      (N/E/S/W positions)
+│       │   └── PlayerSeat   (Hand or CardBack, Dealer/Caller badges)
+│       ├── TrickPile        (center)
+│       └── ScoreBadge log
+├── TrickResolutionDemo      (freeform interactive trick play)
+└── GlossaryIndex / SanctionsTable / TournamentStructure
 ```
 
 ## Testing
 
 **Unit tests** — Vitest, jsdom environment, globals enabled.
 - `src/engine/trickResolution.test.ts` — 15 engine tests
-- `src/content/rules/validateContent.test.ts` — 9 content/engine cross-checks
+- `src/content/rules/validateContent.test.ts` — 20 content/engine cross-checks
+  (one per rule-topic example, plus 2 kap/capitulation scoring rules)
+- `src/content/glossary/glossary.test.ts` — 8 glossary content-integrity checks
+- `src/routes/demo/TrickResolutionDemo.test.ts` — 28 tests for the interactive demo's state machine
 
 After authoring or editing examples, run `npm run validate-content` to confirm every `resolveTrick` step matches the actual engine output.
 
 **E2E tests** — Playwright, Chromium only.
-- `e2e/rulebook.spec.ts` — 10 tests covering page load, tab switching, step navigation, trump badge, score badges, Dealer/Caller badges.
+- `e2e/rulebook.spec.ts` — page load, tab switching, step navigation, trump badge, score badges, Dealer/Caller badges.
+- `e2e/home-nav.spec.ts` — Home page navigation and top-nav routing.
+- `e2e/footer.spec.ts` — footer links (Over ons, feedback mailto).
+- `e2e/pwa.spec.ts` — PWA manifest/service worker behavior.
+- `e2e/responsive.spec.ts` — responsive layout checks.
 - Config: `playwright.config.ts` — baseURL `http://localhost:4173`, webServer auto-starts `npm run preview`.
 - Requires a built `dist/` before running. The webServer is `vite preview`, not the dev server.
 
