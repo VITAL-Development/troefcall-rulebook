@@ -24,4 +24,14 @@ test.describe('Footer', () => {
     await expect(feedbackLink).toBeVisible()
     await expect(feedbackLink).toHaveAttribute('href', /^mailto:/)
   })
+
+  test('has a donation link that opens in a new tab', async ({ page }) => {
+    await page.goto('/')
+    const donateLink = page
+      .getByRole('contentinfo')
+      .getByRole('link', { name: 'Steun dit project' })
+    await expect(donateLink).toBeVisible()
+    await expect(donateLink).toHaveAttribute('target', '_blank')
+    await expect(donateLink).toHaveAttribute('rel', /noopener/)
+  })
 })
