@@ -25,13 +25,13 @@ test.describe('Footer', () => {
     await expect(feedbackLink).toHaveAttribute('href', /^mailto:/)
   })
 
-  test('has a donation link that opens in a new tab', async ({ page }) => {
+  test('renders the Liberapay donate widget script', async ({ page }) => {
     await page.goto('/')
-    const donateLink = page
-      .getByRole('contentinfo')
-      .getByRole('link', { name: 'Steun dit project' })
-    await expect(donateLink).toBeVisible()
-    await expect(donateLink).toHaveAttribute('target', '_blank')
-    await expect(donateLink).toHaveAttribute('rel', /noopener/)
+    const donateWidget = page.getByTestId('donate-widget')
+    await expect(donateWidget).toBeAttached()
+    await expect(donateWidget.locator('script')).toHaveAttribute(
+      'src',
+      'https://liberapay.com/ota-iod-98/widgets/button.js'
+    )
   })
 })
