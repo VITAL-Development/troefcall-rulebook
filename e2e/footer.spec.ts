@@ -24,4 +24,14 @@ test.describe('Footer', () => {
     await expect(feedbackLink).toBeVisible()
     await expect(feedbackLink).toHaveAttribute('href', /^mailto:/)
   })
+
+  test('renders the Liberapay donate widget script', async ({ page }) => {
+    await page.goto('/')
+    const donateWidget = page.getByTestId('donate-widget')
+    await expect(donateWidget).toBeAttached()
+    await expect(donateWidget.locator('script')).toHaveAttribute(
+      'src',
+      'https://liberapay.com/ota-iod-98/widgets/button.js'
+    )
+  })
 })
