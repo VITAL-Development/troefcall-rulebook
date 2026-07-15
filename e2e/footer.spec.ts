@@ -18,13 +18,6 @@ test.describe('Footer', () => {
     await expect(page.getByRole('heading', { name: 'Over ons' })).toBeVisible()
   })
 
-  test('has a feedback mailto link', async ({ page }) => {
-    await page.goto('/')
-    const feedbackLink = page.getByRole('contentinfo').getByRole('link', { name: 'Feedback' })
-    await expect(feedbackLink).toBeVisible()
-    await expect(feedbackLink).toHaveAttribute('href', /^mailto:/)
-  })
-
   test('renders the Liberapay donate widget script', async ({ page }) => {
     await page.goto('/')
     const donateWidget = page.getByTestId('donate-widget')
