@@ -24,7 +24,7 @@ export default function Home() {
       <header className={styles.hero}>
         <h1 className={styles.heroTitle}>Troefcall</h1>
         <p className={styles.heroSubtitle}>
-          Leer het Nederlandse kaartspel met interactieve spelregels en stap-voor-stap voorbeelden.
+          Leer het Surinaams kaartspel met interactieve spelregels en stap-voor-stap voorbeelden.
         </p>
       </header>
 
