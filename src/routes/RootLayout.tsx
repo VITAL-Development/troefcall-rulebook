@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import TopNav from '@/components/nav/TopNav'
 import Footer from '@/components/nav/Footer'
 import FeltSurface from '@/components/table/FeltSurface'
+import FeedbackButton from '@/components/ui/FeedbackButton'
 
 export default function RootLayout() {
   const location = useLocation()
@@ -23,6 +24,7 @@ export default function RootLayout() {
         </motion.main>
       </AnimatePresence>
       <Footer />
+      <FeedbackButton />
     </FeltSurface>
   )
 }
