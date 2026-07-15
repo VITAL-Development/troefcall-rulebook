@@ -4,6 +4,7 @@ import TopNav from '@/components/nav/TopNav'
 import Footer from '@/components/nav/Footer'
 import FeltSurface from '@/components/table/FeltSurface'
 import FeedbackButton from '@/components/ui/FeedbackButton'
+import styles from './RootLayout.module.css'
 
 export default function RootLayout() {
   const location = useLocation()
@@ -14,6 +15,7 @@ export default function RootLayout() {
       <TopNav />
       <AnimatePresence mode="wait">
         <motion.main
+          className={styles.main}
           key={location.pathname}
           initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}

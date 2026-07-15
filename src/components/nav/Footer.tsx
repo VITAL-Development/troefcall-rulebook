@@ -29,9 +29,6 @@ export default function Footer() {
         <Link to="/over-ons" className={styles.link}>
           Over ons
         </Link>
-        <a href={`mailto:${import.meta.env.VITE_FEEDBACK_EMAIL}`} className={styles.link}>
-          Feedback
-        </a>
         <span ref={donateRef} className={styles.donateWidget} data-testid="donate-widget">
           <noscript>
             <a href={DONATE_URL}>
