@@ -74,3 +74,37 @@
   margin-top: var(--space-3);
   color: var(--color-gold-200);
 }
+
+.imagePreview {
+  position: relative;
+  margin-top: var(--space-3);
+}
+
+.imagePreviewThumb {
+  display: block;
+  max-width: 100%;
+  max-height: 160px;
+  border-radius: var(--radius-card);
+  border: 2px solid var(--color-gold-700);
+}
+
+.imagePreviewRemove {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-wood-900);
+  color: var(--color-gold-200);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.imagePreviewNote {
+  margin: var(--space-2) 0 0;
+  font-size: 0.85rem;
+  color: var(--color-text-on-wood);
+}
