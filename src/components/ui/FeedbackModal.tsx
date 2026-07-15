@@ -28,7 +28,7 @@ export default function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
   if (!isOpen) return null
 
   const handleSubmit = () => {
-    const body = encodeURIComponent(message)
+    const body = encodeURIComponent(`${message}\n\nURL of page: ${window.location.href}`)
     const subject = encodeURIComponent('Troefcall feedback')
     window.location.href = `mailto:${import.meta.env.VITE_FEEDBACK_EMAIL}?subject=${subject}&body=${body}`
     setSent(true)
