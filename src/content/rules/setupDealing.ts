@@ -28,7 +28,7 @@ export const setupDealingTopic: RuleTopic = {
     'Voor er één kaart wordt gespeeld, moet de tafel eerst weten wie deelt, wie roept en welke kleur troef is. Deze stappen bepalen de rest van de hand.',
   rules: [
     'Er wordt om de hoogste kaart geloot: wie de hoogste kaart trekt, is dealer. De speler links van de dealer is de caller.',
-    'De caller krijgt als enige eerst 5 kaarten en moet daaruit troef roepen vóórdat er verder gedeeld wordt. Eenmaal de tweede kaartenronde is gegeven, kan troef niet meer gewijzigd worden.',
+    'De caller krijgt als enige eerst 5 kaarten en moet daaruit troef roepen vóórdat er verder gedeeld wordt. De caller kiest vrij welke kleur troef wordt — op basis van eigen inschatting van die 5 kaarten, bijvoorbeeld de kleur met de hoogste kaart(en) of waarvan de caller er de meeste heeft — er is geen verplichte methode. Eenmaal de tweede kaartenronde is gegeven, kan troef niet meer gewijzigd worden.',
     'Na de troefclaim deelt de dealer verder: 5 kaarten aan de overige drie spelers, daarna twee keer 4 kaarten rond — ook aan de caller — tot iedereen 13 kaarten heeft.',
     '"No picture no game": heeft de caller in alle 13 kaarten geen aas, koning, vrouw of boer, dan mag de caller eigenhandig een nieuwe deling eisen. Een onterechte claim levert de tegenpartij 5 punten op.',
     'Bij een misdeling (bijvoorbeeld een verkeerd geschud of gedeeld spel) krijgt de tegenpartij van de dealer 2 strafpunten, gemaximeerd op 2 misdelingen per ronde.',
