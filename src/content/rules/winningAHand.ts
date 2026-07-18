@@ -11,20 +11,20 @@ export const winningAHandTopic: RuleTopic = {
   id: 'hand-winnen',
   title: 'Een hand winnen',
   intro:
-    'Aan het einde van een hand telt niet hoeveel punten je haalt binnen de slag, maar hoeveel slagen je koppel wint. Drie uitkomsten zijn mogelijk: een normale winst, kap, of baunie — elk met eigen punten en eigen regels.',
+    'Aan het einde van een hand tel je niet punten per kaart. Je telt hoeveel slagen jouw koppel wint. Er zijn drie mogelijke uitkomsten: een normale winst, kap, of baunie. Elke uitkomst geeft andere punten en heeft eigen regels.',
   rules: [
-    'Normale winst: een koppel wint 7 of meer slagen terwijl de tegenpartij minstens 1 slag heeft — dat levert 2 punten op.',
-    'Kap: een koppel wint de eerste 7 slagen terwijl de tegenpartij nog op 0 slagen staat. Alleen de speler die de 7de slag wint, mag beslissen: stoppen voor 5 punten, of doorspelen richting baunie. Tapt de partner in plaats van de slagwinnaar zelf de hand af, dan daalt de waarde naar 2 punten.',
-    'Lukt een doorgezette kap-poging niet (de tegenpartij wint alsnog een slag voor slag 13), dan krijgt de tegenpartij 2 punten.',
-    'Baunie: een koppel wint alle 13 slagen terwijl de tegenpartij op 0 blijft staan — dat levert 15 punten op.',
-    'Capituleren mag alleen zodra beide koppels minstens 1 slag hebben gewonnen. Capituleren vóór die grens, terwijl baunie nog mogelijk was, wordt afgerekend als een volledige baunie: 15 punten voor de tegenpartij.',
+    'Normale winst: jouw koppel wint 7 of meer slagen, en de tegenpartij wint minstens 1 slag. Dit geeft 2 punten.',
+    'Kap: jouw koppel wint de eerste 7 slagen op rij, en de tegenpartij heeft nog 0 slagen. Alleen de speler die de 7de slag wint, mag kiezen: stoppen voor 5 punten, of doorspelen voor een baunie. Stopt de partner de hand, in plaats van de speler die de 7de slag won? Dan geeft dit maar 2 punten in plaats van 5.',
+    'Speelt het koppel door na een kap, maar wint de tegenpartij toch nog een slag vóór slag 13? Dan krijgt de tegenpartij 2 punten.',
+    'Baunie: jouw koppel wint alle 13 slagen, en de tegenpartij wint geen enkele slag. Dit geeft 15 punten.',
+    'Capituleren betekent: stoppen met de hand omdat je toch gaat verliezen. Dit mag pas als beide koppels minstens 1 slag hebben gewonnen. Capituleer je te vroeg, terwijl een baunie voor de tegenpartij nog mogelijk was? Dan telt dit als een volledige baunie: de tegenpartij krijgt 15 punten.',
   ],
   examples: [
     {
       id: 'winning-a-hand-simple',
       level: 'simple',
       title: 'Een gewone winst',
-      narration: 'Geen kap, geen baunie — gewoon de meeste slagen winnen is al genoeg voor 2 punten.',
+      narration: 'Geen kap en geen baunie. De meeste slagen winnen is al genoeg voor 2 punten.',
       seats,
       steps: [
         {
@@ -41,17 +41,17 @@ export const winningAHandTopic: RuleTopic = {
         {
           type: 'callout',
           tone: 'info',
-          text: 'Beide koppels hebben nu minstens 1 slag — kap en baunie zijn voor deze hand niet meer mogelijk, voor geen van beide koppels.',
+          text: 'Beide koppels hebben nu minstens 1 slag. Daarom zijn kap en baunie voor deze hand niet meer mogelijk.',
         },
         {
           type: 'callout',
           tone: 'info',
-          text: 'De resterende 6 slagen worden verdeeld: Noord/Zuid winnen er nog 4, Oost/West nog 2.',
+          text: 'De laatste 6 slagen worden verdeeld: Noord/Zuid winnen er nog 4, Oost/West nog 2.',
         },
         {
           type: 'callout',
           tone: 'success',
-          text: 'Eindstand: Noord/Zuid winnen 8 van de 13 slagen, Oost/West winnen 5. Geen van beiden bleef op 0 staan, dus dit is een gewone winst.',
+          text: 'Eindstand: Noord/Zuid winnen 8 van de 13 slagen, Oost/West winnen 5. Beide koppels wonnen minstens 1 slag. Dit is een gewone winst.',
         },
         {
           type: 'score',
@@ -64,9 +64,9 @@ export const winningAHandTopic: RuleTopic = {
     {
       id: 'winning-a-hand-twist',
       level: 'twist',
-      title: 'Kap: stoppen of doorduwen?',
+      title: 'Kap: stoppen of doorspelen?',
       narration:
-        'Noord/Zuid winnen de eerste 7 slagen op rij terwijl Oost/West nog op 0 staan — een kap-situatie. Wie mag beslissen, en wat gebeurt er in twee verschillende scenario’s?',
+        'Noord/Zuid winnen de eerste 7 slagen op rij. Oost/West staan nog op 0 slagen — dit is een kap. Wie mag beslissen? En wat gebeurt er in twee verschillende situaties?',
       seats,
       steps: [
         {
@@ -88,39 +88,39 @@ export const winningAHandTopic: RuleTopic = {
         {
           type: 'callout',
           tone: 'info',
-          text: 'Alleen Zuid, de winnaar van die 7de slag, mag nu beslissen: de hand hier stopzetten voor 5 punten, of doorspelen richting baunie. Partner Noord mag deze keuze niet voor Zuid maken.',
+          text: 'Alleen Zuid, de winnaar van de 7de slag, mag nu kiezen: stoppen voor 5 punten, of doorspelen naar een baunie. Partner Noord mag deze keuze niet maken voor Zuid.',
         },
         {
           type: 'callout',
           tone: 'info',
-          text: 'Scenario A: in plaats van Zuid zelf, tapt partner Noord de hand af.',
+          text: 'Situatie A: in plaats van Zuid zelf, stopt partner Noord de hand.',
         },
         {
           type: 'score',
           team: 1,
           points: 2,
-          reason: 'Scenario A: omdat de partner aftapt in plaats van de slagwinnaar zelf, daalt de kap van 5 naar 2 punten.',
+          reason: 'Situatie A: de partner stopt de hand, niet de speler die de slag won. Daarom geeft de kap nu 2 punten in plaats van 5.',
         },
         {
           type: 'callout',
           tone: 'info',
-          text: 'Scenario B (alternatief): Zuid besluit zelf om door te spelen richting baunie, in plaats van te stoppen.',
+          text: 'Situatie B (in plaats van A): Zuid kiest zelf om door te spelen naar een baunie, in plaats van te stoppen.',
         },
         {
           type: 'callout',
           tone: 'warning',
-          text: 'Bij slag 11 heeft Oost eindelijk een kleur die niemand van Noord/Zuid kan volgen of overtroeven — Oost wint een slag. De baunie-poging is mislukt.',
+          text: 'Bij slag 11 heeft Oost een kleur die niemand van Noord/Zuid kan volgen of overtroeven. Oost wint deze slag. De baunie lukt nu niet meer.',
         },
         {
           type: 'score',
           team: 2,
           points: 2,
-          reason: 'Scenario B: de doorgezette kap-poging lukt niet, dus Oost/West krijgen 2 punten in plaats van Noord/Zuid.',
+          reason: 'Situatie B: doorspelen naar de baunie lukt niet. Daarom krijgen Oost/West 2 punten, niet Noord/Zuid.',
         },
         {
           type: 'callout',
           tone: 'success',
-          text: 'Zelfde 7-0 startpositie, drie heel verschillende uitkomsten: 5 punten bij stoppen door de slagwinnaar zelf, 2 punten bij aftappen door de partner, of 2 punten voor de tegenpartij als doorduwen naar baunie mislukt.',
+          text: 'Dezelfde start van 7-0, maar drie verschillende uitkomsten: 5 punten als de slagwinnaar zelf stopt, 2 punten als de partner stopt, of 2 punten voor de tegenpartij als doorspelen naar de baunie niet lukt.',
         },
       ],
     },
@@ -129,7 +129,7 @@ export const winningAHandTopic: RuleTopic = {
       level: 'full',
       title: 'Te vroeg capituleren kost de baunie-prijs',
       narration:
-        'Oost/West staan nog op 0 slagen en willen er nu al de brui aan geven — maar capituleren mag pas zodra beide koppels minstens 1 slag hebben. Wat als ze het toch proberen?',
+        'Oost/West staan nog op 0 slagen en willen nu al stoppen. Maar capituleren mag pas als beide koppels minstens 1 slag hebben. Wat gebeurt er als ze het toch proberen?',
       seats,
       steps: [
         {
@@ -141,49 +141,49 @@ export const winningAHandTopic: RuleTopic = {
         {
           type: 'callout',
           tone: 'warning',
-          text: 'Noord/Zuid winnen de eerste 5 slagen op rij. Oost/West staan nog op 0 — baunie is voor Noord/Zuid op dit moment nog volledig mogelijk.',
+          text: 'Noord/Zuid winnen de eerste 5 slagen op rij. Oost/West staan nog op 0 slagen. Een baunie voor Noord/Zuid is nu nog mogelijk.',
         },
         {
           type: 'callout',
           tone: 'warning',
-          text: 'Oost wil capituleren om verder puntenverlies te beperken. Maar dat mag niet: capituleren is alleen toegestaan zodra beide koppels minstens 1 slag gewonnen hebben, en Oost/West staan nog op 0.',
+          text: 'Oost wil capituleren om niet meer punten te verliezen. Maar dat mag niet: capituleren mag pas als beide koppels minstens 1 slag hebben gewonnen. Oost/West staan nog op 0.',
         },
         {
           type: 'callout',
           tone: 'warning',
-          text: 'Oost capituleert toch, vóórdat een kap zelfs maar zeker was en terwijl baunie nog mogelijk was. Dat wordt afgerekend als een volledige baunie.',
+          text: 'Oost capituleert toch. Een kap was nog niet eens zeker, en een baunie was nog mogelijk. Daarom telt dit als een volledige baunie.',
         },
         {
           type: 'score',
           team: 1,
           points: 15,
-          reason: 'Te vroeg capituleren terwijl baunie nog mogelijk was: Noord/Zuid krijgen de volle 15 baunie-punten.',
+          reason: 'Oost/West capituleren te vroeg, terwijl een baunie nog mogelijk was. Noord/Zuid krijgen daarom de volle 15 baunie-punten.',
         },
         {
           type: 'callout',
           tone: 'info',
-          text: 'Was dit niet gebeurd, dan had de hand normaal verder gespeeld. Ter vergelijking: stel dat Oost/West die capitulatie niet hadden geprobeerd en in plaats daarvan eerlijk doorspeelden.',
+          text: 'Was dit niet gebeurd? Dan was de hand normaal verder gespeeld. Stel dat Oost/West niet hadden gecapituleerd, en gewoon waren doorgegaan.',
         },
         {
           type: 'callout',
           tone: 'info',
-          text: 'Bij slag 6 wint West alsnog een slag. Vanaf nu hebben beide koppels minstens 1 slag — kap en baunie zijn voor de rest van deze hand niet meer mogelijk, en capituleren zou vanaf nu wél zijn toegestaan.',
+          text: 'Bij slag 6 wint West eindelijk een slag. Nu hebben beide koppels minstens 1 slag. Kap en baunie zijn voor de rest van deze hand niet meer mogelijk. Vanaf nu mag je wél capituleren.',
         },
         {
           type: 'callout',
           tone: 'info',
-          text: 'De resterende slagen worden verdeeld: Noord/Zuid winnen er nog 5, Oost/West nog 2. Eindstand: 10 tegen 3 slagen.',
+          text: 'De laatste slagen worden verdeeld: Noord/Zuid winnen er nog 5, Oost/West nog 2. Eindstand: 10 tegen 3 slagen.',
         },
         {
           type: 'score',
           team: 1,
           points: 2,
-          reason: 'Zonder de voortijdige capitulatie was dit een gewone winst geweest voor Noord/Zuid (10 tegen 3 slagen) — 2 punten in plaats van 15.',
+          reason: 'Zonder de te vroege capitulatie was dit een gewone winst geweest voor Noord/Zuid (10 tegen 3 slagen): 2 punten in plaats van 15.',
         },
         {
           type: 'callout',
           tone: 'success',
-          text: 'Het verschil is groot: eerlijk uitspelen had Noord/Zuid hier maar 2 punten opgeleverd. Te vroeg capituleren terwijl baunie nog mogelijk was, koste Oost/West in plaats daarvan de volle 15 punten.',
+          text: 'Het verschil is groot. Gewoon doorspelen had Noord/Zuid hier maar 2 punten gegeven. Maar te vroeg capituleren, terwijl een baunie nog mogelijk was, kostte Oost/West de volle 15 punten.',
         },
       ],
     },
