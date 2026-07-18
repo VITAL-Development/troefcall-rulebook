@@ -25,7 +25,7 @@ export const setupDealingTopic: RuleTopic = {
   id: 'schudden-en-delen',
   title: 'Schudden, delen & troef roepen',
   intro:
-    'Een hand is één ronde van het spel: van het delen van de kaarten tot de puntentelling aan het einde. Voordat een hand begint, moet de tafel drie dingen weten: wie deelt de kaarten, wie roept troef, en welke kleur troef is. Dit bepaalt de rest van de hand.',
+    'Een hand is één ronde van het spel: van het delen van de kaarten tot de puntentelling aan het einde. Troef is de kleur die deze hand extra sterk is: een troefkaart wint altijd van een kaart van een andere kleur. Voordat een hand begint, moet de tafel drie dingen weten: wie deelt de kaarten, wie roept troef, en welke kleur troef wordt. Dit bepaalt de rest van de hand.',
   rules: [
     "Elke speler trekt een kaart. Wie de hoogste kaart trekt, is de dealer (de speler die deelt). De speler links van de dealer is de caller (de speler die troef roept).",
     'Alleen de caller krijgt eerst 5 kaarten. De caller moet met deze 5 kaarten troef roepen, vóórdat er verder gedeeld wordt. De caller mag zelf kiezen welke kleur troef wordt, bijvoorbeeld de kleur met de hoogste kaart, of de kleur waar de caller de meeste kaarten van heeft. Er is geen vaste manier om dit te kiezen. Is de tweede ronde kaarten al gedeeld? Dan kan troef niet meer veranderen.',
