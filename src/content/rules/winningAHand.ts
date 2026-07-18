@@ -14,7 +14,7 @@ export const winningAHandTopic: RuleTopic = {
     'Een hand is één ronde van het spel, van het delen van de kaarten tot alle 13 slagen. Aan het einde van een hand tel je niet punten per kaart. Je telt hoeveel slagen jouw koppel wint. Er zijn drie mogelijke uitkomsten: een normale winst, kap, of baunie. Elke uitkomst geeft andere punten en heeft eigen regels.',
   rules: [
     'Normale winst: jouw koppel wint 7 of meer slagen, en de tegenpartij wint minstens 1 slag. Dit geeft 2 punten.',
-    "Kap: jouw koppel wint de eerste 7 slagen op rij, en de tegenpartij heeft nog 0 slagen. Alleen de speler die de 7de slag wint, mag kiezen: de hand hier stoppen (de resterende slagen niet meer uitspelen) voor 5 punten, of doorspelen voor een baunie (proberen ook alle andere slagen te winnen). Stopt de partner de hand, in plaats van de speler die de 7de slag won? Dan geeft dit maar 2 punten in plaats van 5.",
+    "Kap: jouw koppel wint de eerste 7 slagen op rij, en de tegenpartij heeft nog 0 slagen. Alleen de speler die de 7de slag wint, mag kiezen: de hand hier stoppen (de resterende slagen niet meer uitspelen) voor 5 punten, of doorspelen tot en met slag 13, in een poging voor een baunie (alle 13 slagen winnen). Stopt de partner de hand, in plaats van de speler die de 7de slag won? Dan geeft dit maar 2 punten in plaats van 5.",
     'Speelt het koppel door na een kap, maar wint de tegenpartij toch nog een slag vóór slag 13? Dan krijgt de tegenpartij 2 punten.',
     'Baunie: jouw koppel wint alle 13 slagen, en de tegenpartij wint geen enkele slag. Dit geeft 15 punten.',
     'Capituleren betekent dat een koppel de hand stopt vóórdat alle 13 slagen gespeeld zijn, omdat dat koppel toch gaat verliezen. Dit mag pas als beide koppels minstens 1 slag hebben gewonnen. Capituleer je te vroeg, terwijl een baunie voor de tegenpartij nog mogelijk was? Dan telt dit als een volledige baunie: de tegenpartij krijgt 15 punten.',
@@ -88,7 +88,7 @@ export const winningAHandTopic: RuleTopic = {
         {
           type: 'callout',
           tone: 'info',
-          text: 'Alleen Zuid, de winnaar van de 7de slag, mag nu kiezen: stoppen voor 5 punten, of doorspelen naar een baunie. Partner Noord mag deze keuze niet maken voor Zuid.',
+          text: 'Alleen Zuid, de winnaar van de 7de slag, mag nu kiezen: stoppen voor 5 punten, of doorspelen tot en met slag 13, in een poging voor een baunie. Partner Noord mag deze keuze niet maken voor Zuid.',
         },
         {
           type: 'callout',
