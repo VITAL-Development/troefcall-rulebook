@@ -11,19 +11,46 @@
   text-align: center;
 }
 
+.captionSlot {
+  /* All of this example's captions are stacked in the same grid cell, so the slot is always as
+     tall as its tallest caption actually renders at the current viewport width — instead of a
+     hardcoded line-count guess that breaks whenever text wraps differently. */
+  display: grid;
+}
+
+.captionGhost,
 .caption {
+  grid-area: 1 / 1;
   font-family: var(--font-body);
   font-size: 1rem;
   text-align: center;
-  min-height: 2.5em;
+  margin: 0;
 }
 
+.captionGhost {
+  visibility: hidden;
+}
+
+.bannerSlot {
+  /* Same technique as .captionSlot: every callout this example can show is stacked in the same
+     grid cell (via .bannerGhost), sizing the slot to the tallest one at the current width. */
+  display: grid;
+}
+
+.bannerGhost,
 .banner {
+  grid-area: 1 / 1;
   border-radius: var(--radius-panel);
   padding: var(--space-2) var(--space-3);
   font-weight: 700;
   text-align: center;
   font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.bannerGhost {
+  visibility: hidden;
+  border: 1px solid transparent;
 }
 
 .info {
@@ -42,6 +69,15 @@
   background: rgba(120, 200, 140, 0.15);
   border: 1px solid #78c88c;
   color: #c9f0d4;
+}
+
+.centerSlot {
+  /* Matches TrickPile's fixed 180px footprint so the table doesn't grow when the first card is
+     played (before that, this cell only holds a null or the much shorter trump badge). */
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .trumpBadge {

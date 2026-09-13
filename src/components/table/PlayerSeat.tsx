@@ -5,9 +5,12 @@ import styles from './PlayerSeat.module.css'
 interface PlayerSeatProps {
   seat: Seat
   children?: ReactNode
+  /** Reserves a hand's worth of height even while this seat is empty, so a seat that's dealt
+   *  cards partway through an example doesn't grow the table at that step. */
+  reserveHandHeight?: boolean
 }
 
-export default function PlayerSeat({ seat, children }: PlayerSeatProps) {
+export default function PlayerSeat({ seat, children, reserveHandHeight }: PlayerSeatProps) {
   return (
     <div className={styles.seat}>
       <span className={styles.name}>{seat.name}</span>
@@ -18,7 +21,9 @@ export default function PlayerSeat({ seat, children }: PlayerSeatProps) {
           Koppel {seat.team}
         </span>
       </div>
-      <div className={styles.content}>{children}</div>
+      <div className={[styles.content, reserveHandHeight ? styles.contentReserved : ''].join(' ')}>
+        {children}
+      </div>
     </div>
   )
 }

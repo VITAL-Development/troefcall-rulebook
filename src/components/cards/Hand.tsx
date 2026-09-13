@@ -25,7 +25,7 @@ export default function Hand({
   layoutIdPrefix,
 }: HandProps) {
   return (
-    <div className={styles.hand}>
+    <div className={[styles.hand, faceUp ? '' : styles.concealed].join(' ')}>
       {cards.map((card) => {
         const id = cardId(card)
         const isHighlighted = highlightedCardId === id

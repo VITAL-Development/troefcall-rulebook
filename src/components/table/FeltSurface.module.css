@@ -1,6 +1,8 @@
 .felt {
   position: relative;
-  min-height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-color: var(--color-felt-700);
   background-image:
     radial-gradient(circle at 50% 0%, var(--color-felt-500) 0%, var(--color-felt-700) 55%, var(--color-felt-900) 100%),
@@ -25,4 +27,7 @@
 .inner {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }

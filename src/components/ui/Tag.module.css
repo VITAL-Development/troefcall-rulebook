@@ -26,3 +26,10 @@
   background: var(--color-gold-500);
   color: var(--color-wood-900);
 }
+
+.onLight {
+  /* Same high-contrast pairing already used for the Dealer/Caller seat badges. */
+  background: var(--color-gold-500);
+  border-color: var(--color-gold-700);
+  color: var(--color-wood-900);
+}

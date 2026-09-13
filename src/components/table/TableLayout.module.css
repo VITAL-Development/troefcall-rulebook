@@ -1,14 +1,33 @@
+.tableWrap {
+  overflow-x: hidden;
+}
+
 .table {
   display: grid;
   grid-template-areas:
     '. north .'
     'west center east'
     '. south .';
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
   gap: var(--space-3);
   align-items: center;
   justify-items: center;
   padding: var(--space-4) 0;
+}
+
+@media (max-width: 768px) {
+  .table {
+    gap: var(--space-2);
+    padding: var(--space-3) 0;
+  }
+}
+
+@media (max-width: 430px) {
+  .table {
+    grid-template-columns: minmax(0, 1fr) 120px minmax(0, 1fr);
+    gap: 6px;
+    padding: var(--space-2) 0;
+  }
 }
 
 .north {

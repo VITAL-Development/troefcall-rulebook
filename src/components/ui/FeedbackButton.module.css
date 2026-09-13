@@ -1,0 +1,41 @@
+.button {
+  position: fixed;
+  right: var(--space-5);
+  bottom: var(--space-5);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(160deg, var(--color-gold-300) 0%, var(--color-gold-700) 100%);
+  border: 2px solid var(--color-gold-500);
+  box-shadow: var(--shadow-panel);
+  color: var(--color-wood-900);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  /* keep clear of device notches/home indicators without covering other content */
+  margin-right: env(safe-area-inset-right, 0px);
+  margin-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.button:hover {
+  transform: scale(1.06);
+  box-shadow: var(--shadow-gold-glow);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--color-gold-200);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .button {
+    right: var(--space-4);
+    bottom: var(--space-4);
+    width: 48px;
+    height: 48px;
+  }
+}

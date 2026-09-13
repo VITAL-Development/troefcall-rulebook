@@ -83,6 +83,11 @@ export default function ExampleStepper({ example }: ExampleStepperProps) {
   const step = example.steps[index]
   const state = useMemo(() => accumulate(example.steps, index, example.trumpSuit), [example, index])
   const seatById = useMemo(() => new Map(example.seats.map((s) => [s.id, s])), [example])
+  const calloutTexts = useMemo(() => example.steps.filter((s) => s.type === 'callout').map((s) => s.text), [example])
+  const scoreSteps = useMemo(() => example.steps.filter((s) => s.type === 'score'), [example])
+  const captions = useMemo(() => example.steps.map(stepCaption), [example])
+  const hasPlays = useMemo(() => example.steps.some((s) => s.type === 'play'), [example])
+  const hasDeals = useMemo(() => example.steps.some((s) => s.type === 'deal'), [example])
 
   return (
     <div className={styles.stepper}>
@@ -97,7 +102,7 @@ export default function ExampleStepper({ example }: ExampleStepperProps) {
           const cards = state.hands[seatId]
           const count = state.handCounts[seatId]
           return (
-            <PlayerSeat seat={seat}>
+            <PlayerSeat seat={seat} reserveHandHeight={hasDeals}>
               {cards ? (
                 <Hand cards={cards} size="sm" trumpSuit={state.trumpSuit} />
               ) : count ? (
@@ -107,39 +112,67 @@ export default function ExampleStepper({ example }: ExampleStepperProps) {
           )
         }}
         center={
-          state.trickPlays.length > 0 ? (
-            <TrickPile plays={state.trickPlays} winningSeat={state.winningSeat} />
-          ) : state.trumpSuit ? (
-            <span className={styles.trumpBadge}>
-              <SuitIcon suit={state.trumpSuit} size={14} color="var(--color-wood-900)" />
-              Troef: {SUIT_NAME_NL[state.trumpSuit]}
-            </span>
-          ) : null
+          <div className={hasPlays ? styles.centerSlot : undefined}>
+            {state.trickPlays.length > 0 ? (
+              <TrickPile plays={state.trickPlays} winningSeat={state.winningSeat} />
+            ) : state.trumpSuit ? (
+              <span className={styles.trumpBadge}>
+                <SuitIcon suit={state.trumpSuit} size={14} color="var(--color-wood-900)" />
+                Troef: {SUIT_NAME_NL[state.trumpSuit]}
+              </span>
+            ) : null}
+          </div>
         }
       />
 
-      <AnimatePresence mode="wait">
-        {state.latestCallout && (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: -6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            className={[styles.banner, styles[state.latestCallout.tone]].join(' ')}
-          >
-            {state.latestCallout.text}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {calloutTexts.length > 0 && (
+        <div className={styles.bannerSlot}>
+          {/* Invisible copies of every callout this example can show, so the slot is always as
+              tall as the tallest one actually renders at the current viewport width — instead of
+              a hardcoded line-count guess that breaks whenever text wraps differently. */}
+          {calloutTexts.map((text, i) => (
+            <div key={i} className={styles.bannerGhost} aria-hidden="true">
+              {text}
+            </div>
+          ))}
+          <AnimatePresence mode="wait">
+            {state.latestCallout && (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: -6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className={[styles.banner, styles[state.latestCallout.tone]].join(' ')}
+              >
+                {state.latestCallout.text}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      )}
 
-      <p className={styles.caption}>{stepCaption(step)}</p>
+      <div className={styles.captionSlot}>
+        {captions.map((text, i) => (
+          <p key={i} className={styles.captionGhost} aria-hidden="true">
+            {text}
+          </p>
+        ))}
+        <p className={styles.caption}>{stepCaption(step)}</p>
+      </div>
 
-      {state.scoreLog.length > 0 && (
+      {scoreSteps.length > 0 && (
         <div className={styles.scoreLog}>
-          {state.scoreLog.map((entry, i) => (
-            <div key={i} className={styles.scoreEntry}>
-              <ScoreBadge points={entry.points} label={`punten koppel ${entry.team}`} />
-              <span>{entry.reason}</span>
+          {/* Renders every score entry this example will ever show up front (matching its real
+              text and wrapping at the current width), only toggling visibility as steps reveal
+              them — so the log never grows once the first entry appears. */}
+          {scoreSteps.map((scoreStep, i) => (
+            <div
+              key={i}
+              className={styles.scoreEntry}
+              style={i >= state.scoreLog.length ? { visibility: 'hidden' } : undefined}
+            >
+              <ScoreBadge points={scoreStep.points} label={`punten koppel ${scoreStep.team}`} />
+              <span>{scoreStep.reason}</span>
             </div>
           ))}
         </div>
