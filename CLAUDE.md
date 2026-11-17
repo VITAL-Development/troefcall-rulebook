@@ -116,3 +116,7 @@ Required repo secrets: `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`, `FEEDBACK_E
 - **Deploy clean-slate is manual-only**: normal push deploys use non-destructive diff sync; a full remote wipe only happens if someone runs `workflow_dispatch` with `clean_slate: true` — treat that as a deliberate drift-recovery action, not routine.
 - **PWA icons**: generated via `scripts/generate-icons.mjs` (uses `sharp`). Only woff2 fonts are precached; woff is excluded intentionally.
 - **Feedback button needs `VITE_FEEDBACK_EMAIL`**: `FeedbackButton` renders nothing if that env var is unset — copy `.env.example` to `.env` locally or the floating button silently disappears.
+
+## Review policy
+
+Before starting any issue, read [`AGENT_REVIEW_POLICY.md`](./AGENT_REVIEW_POLICY.md). It defines which changes an LLM may review and merge, and which need a human.
